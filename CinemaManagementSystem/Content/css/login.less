@@ -1,0 +1,157 @@
+a {
+    text-decoration: none;
+}
+
+// 顶部
+header {
+    width: 980px;
+    height: auto;
+    margin: 40px auto 30px;
+    a {
+        display: block;
+        width: 234px;
+        height: 48px;
+        background: url("../IMG/logo.png");
+    }
+}
+
+input {
+    outline: none;
+}
+
+// 登录
+.denglu {
+    .denglu1 {
+        margin: 0 auto 70px;
+        width: 980px;
+        display: flex;
+        .denglu1_1 {
+            width: 480px;
+            height: 370px;
+            margin-right: 115px;
+        }
+        .denglu1_2 {
+            .denglu1_2_1 {
+                width: 268px;
+                display: flex;
+                justify-content: space-between;
+                font-weight: 400;
+                color: #666;
+                font-size: 12px;
+                a {
+                    color: #666;
+                    i {
+                        display: inline-block;
+                        background: url("../IMG/sprite_webpage.png") -14px -57px;
+                        background-size: 195px 113px;
+                        width: 12px;
+                        height: 15px;
+                        vertical-align: bottom;
+                    }
+                }
+                a:hover span {
+                    text-decoration: underline;
+                }
+            } // 输入账户
+            .denglu1_2_2 {
+                margin: 8px 0 16px;
+                position: relative;
+                input {
+                    width: 268px;
+                    font-size: 12px;
+                    height: 34px;
+                    padding: 5px 4px 5px 30px;
+                    box-sizing: border-box;
+                    color: #666;
+                }
+                i {
+                    position: absolute;
+                    left: 8px;
+                    top: 8px;
+                    display: inline-block;
+                    background: url("../IMG/denglu_1.png");
+                    width: 18px;
+                    height: 17px;
+                }
+                input:focus {
+                    outline:2px solid #e02025;
+                }
+            } // 输入密码
+            .denglu1_2_3 {
+                margin: 8px 0;
+                position: relative;
+                input {
+                    width: 268px;
+                    font-size: 12px;
+                    height: 34px;
+                    padding: 5px 4px 5px 30px;
+                    box-sizing: border-box;
+                    color: #666;
+                }
+                i {
+                    position: absolute;
+                    left: 8px;
+                    top: 8px;
+                    display: inline-block;
+                    background: url("../IMG/denglu_2.png");
+                    width: 18px;
+                    height: 17px;
+                }
+                input:focus {
+                    outline:2px solid #e02025;
+                }
+            } // 忘记密码
+            .denglu1_2_4 {
+                text-align: right;
+                a {
+                    font-size: 12px;
+                    color: #ec454a;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            } // 登录
+            .denglu1_2_5 {
+                padding: 8px 0;
+                text-align: center;
+                input {
+                    width: 100%;
+                    height: 32px;
+                    color: #fff;
+                    border: #e02025;
+                    background: #ec454a;
+                }
+            } // 注册
+            p {
+                font-size: 12px;
+                color: #666;
+                a {
+                    font-size: 12px;
+                    color: #ec454a;
+                }
+                a:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+// 底部
+footer {
+    p {
+        width: 980px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 12px;
+        span {
+            color: #ccc;
+        }
+        a {
+            color: #ccc;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    }
+}

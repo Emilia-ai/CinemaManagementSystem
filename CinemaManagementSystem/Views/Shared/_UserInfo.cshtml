@@ -1,0 +1,144 @@
+﻿
+
+@if (ViewBag.model == 1)
+{
+
+
+    <div class="ringht">
+        <div class="top">
+            <p>我的订单</p>
+        </div>
+        @if (ViewBag.noresult == 1)
+        {
+            <div style="padding:50px,100px">您暂无订单哦</div>
+        }
+        else
+        {
+            <ul>
+
+
+
+                @foreach (var item in ViewBag.infoes)
+                {
+                    <li>
+                        <div class="tops">
+                            <p>
+                                <span>@item.year.ToLongDateString();</span>
+                                <span>夏日生活订单编号:@item.Orderid</span>
+                            </p>
+
+                        </div>
+                        <div class="bottoms">
+                            <div class="lefts">
+                                <i>
+                                    <img src="@item.pic" alt="">
+                                </i>
+                                <div class="name">
+                                    <p>@item.moviename</p>
+                                    <p>@item.cinema</p>
+                                    <p>@item.Seat</p>
+                                    <p>@item.time</p>
+                                </div>
+                            </div>
+                            <div class="ringhts">
+                                <span>￥@item.price</span>
+                                @if (item.state == 1)
+                                {
+
+                                    <span>已完成</span>
+                                }
+                                else
+                                {
+                                    <span>待完成</span>
+                                }
+
+                                <span><a>查看详情</a></span>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+               
+
+            </ul> 
+            }
+        </div>
+}
+else
+{
+    <div class="ringht">
+
+        <div class="top">
+            <p>我的订单</p>
+        </div>
+        <div id="left">
+            <div id="img">
+                <img src="@ViewBag.pic" class="img-circle" alt="Cinque Terre" width="304" height="236">
+            </div>
+            <form action="/UserInfo/Uploadpic" method="post" enctype="multipart/form-data">
+                <div id="btn">
+                    更改头像
+                    <input id="File" type="file" class="file" name="file" />
+                </div>
+              <input type="submit" id="tijiao" style="display:none"/>
+            </form>
+        </div>
+        <div id="right">
+            <form>
+                <div class="box" style="margin-bottom:60px">
+                    昵称:
+                    <span>
+                        <input type="text" placeholder="输入更改的昵称" class="input" id="name" value="@ViewBag.name">
+                    </span>
+                </div>
+                <div class="box" style="margin-bottom:60px;margin-left:-12px">
+                    手机号:
+                    <span>
+                        <input type="text" value="@ViewBag.tel" id="tel" class="input" disabled>
+                    </span>
+                </div>
+                <div class="box" style="margin-bottom:60px">
+                    邮箱:
+                    <span>
+                        <input type="text" value="@ViewBag.mail" id="mail" class="input" disabled>
+                    </span>
+                </div>
+
+            </form>
+            <button type="button" class="btn btn-primary" onclick="sub()" style="width:130px;margin-left:50px">提交</button>
+        </div>
+    </div>
+}
+<script>
+    window.onload = function init() {
+
+        var tel ="@ViewBag.tel";
+            var s = document.getElementById("tel")
+            var h = tel.substr(0, 3) + '****' + tel.substr(7);
+            console.log(h)
+            s.value = h;
+    }
+    function sub() {
+        var name = document.getElementById("name").value
+        console.log(name)
+        $.ajax({
+            type: "Post",
+            url: "/UserInfo/Upload/",　　　　//请求链接格式：页面文件/请求的操作(页面的带有WebMethod前缀的静态函数)
+            data: JSON.stringify　　　　　　　  //传递的参数使用JSON.stringify转译为JSON格式
+                ({
+                    "name": name
+                    //"code": $("#UserName").val(),
+                    //传递给后台的参数格式："参数名":值。参数名与参数个数一定要与后台函数的参数名及参数个数完全一致
+                }),
+            contentType: "application/json",
+            dataType: "text",
+            success: function (data) {
+                document.getElementById("tijiao").click();
+            },
+            error: function (err) {
+                console.log(err.responseText)
+            }
+        })
+    }
+
+</script>

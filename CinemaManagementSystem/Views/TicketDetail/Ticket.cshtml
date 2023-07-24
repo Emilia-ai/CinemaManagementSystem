@@ -1,0 +1,242 @@
+﻿ 
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Ticket</title>
+    <link href="~/Content/css/CinemaIndex.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/clear.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/css/Ticket.css">
+    <script type="text/javascript" src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.seat-charts.min.js"></script>
+    <link rel="stylesheet" href="~/Content/ElementUI/element-ui.css" />
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/ElementUI/element-ui.js"></script>
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link rel="stylesheet" href="~/Content/css/index.css">
+</head>
+<body>
+    <header class="dingbu">
+        <nav>
+            <a href="#" class="logo">
+                <img src="~/Content/img/logo.png" style="height:80px;width:100px;margin-top:-20px" />
+            </a>
+            <div class="xiala1 bian">
+                <div class="xiala1_1">
+                    <a href="#" class="cd">成都</a>
+                    <div id="app">
+                        <el-cascader size="large"
+                                     ref="addPoint"
+                                     placeholder="请选择"
+                                     :props="cityProps"
+                                     :options="cityOptions"
+                                     clearable
+                                     v-model="selectedOptions"
+                                     @@change="handleChange">
+                        </el-cascader>
+                    </div>
+                </div>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="/Index/Index">首页</a>
+                </li>
+                <li>
+                    <a href="/Index/Movie/">电影</a>
+                </li>
+                <li>
+                    <a href="/Index/Cinema/">影院</a>
+                </li>
+                <li>
+                    <a href="/Index/bangdan">榜单</a>
+                </li>
+
+            </ul>
+            <div class="shouji bian">
+                <span class="shouji_1"></span>
+                <span>APP下载</span>
+                <span class="sanjiao"></span>
+                <div class="shouji1">
+                    <div>
+                        <div></div>
+                    </div>
+                    <p>扫码下载APP</p>
+                    <p>选座更优惠</p>
+                </div>
+            </div>
+            <div class="sousuo">
+                <input class="sousuo_1" id="text" type="search" maxlength="32" placeholder="找电影" autocomplete="off">
+                <button class="sousuo_2" type="button" value="" onclick="select()"></button>
+            </div>
+            <div class="denglu bian">
+                <a href="#">
+                    <img src="@ViewBag.picture" class="img-circle" alt="Cinque Terre" width="100" height="52">
+                </a>
+
+                <div id="login">
+                    <a href="/LoginAndResinger/Login" target="blank" id="enter">登录</a>
+                    <a href="/UserInfo/Infoes" target="blank" class="myinfo">个人中心</a>
+                    <a href="" target="blank" class="myinfo">退出登录</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div style="margin-top:150px;width:1000px;margin-left:15%" id="app">
+        <el-steps :active="2" align-center>
+            <el-step title="步骤1" description="选择影片场次"></el-step>
+            <el-step title="步骤2" description="选择座位"></el-step>
+            <el-step title="步骤3" description="14分钟内付款"></el-step>
+            <el-step title="步骤4" description="影院取票观影"></el-step>
+        </el-steps>
+    </div>
+    <div id="main">
+
+        <div class="demo">
+            <div id="seat-map">
+                <div class="front">屏幕</div>
+            </div>
+            <div class="booking-details">
+                @*@foreach (var item in ViewBag.movie)
+                {*@
+                    <img id="img" src="@ViewBag.movie.pic" />
+                    <div id="movie" class="right"><span>@ViewBag.movie.moviename</span></div>
+                    <div id="type" class="r">类型:<span>@ViewBag.tag</span></div>
+                    <div class="r" id="times">时长:<span>@ViewBag.movie.duration</span></div>
+                <p>影院：<span>@ViewBag.cinema</span></p>
+                <p>影厅：<span>@ViewBag.hall.Fname</span></p>
+                <p>版本：<span>@ViewBag.movie.language</span></p>
+                <p>场次：<span style="color:red">@ViewBag.hall.FStart.ToString("HH:mm")</span></p>
+                <p>票价：<span>@ViewBag.movie.Ticket</span></p>
+                <p>座位：</p>
+               
+                <ul id="selected-seats"></ul>
+
+                <a id="go" href=""></a>
+                <button class="checkout-button btn btn_primary" onclick="money()">确定购买</button>
+                <p>票数：<span id="counter">0</span></p>
+                <p>总计：<b>￥<span id="total">0</span></b></p>
+                <div id="legend"></div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+
+        <br />
+
+
+    </div>
+
+    <script type="text/javascript">
+        var price = @ViewBag.movie.Ticket; /*票价*/
+        $(document).ready(function () {
+            var $cart = $('#selected-seats'),
+                /*座位区*/
+                $counter = $('#counter'),
+                /*票数*/
+                $total = $('#total'); /*总计金额*/
+
+            var sc = $('#seat-map').seatCharts({
+                map: [ /*座位图*/
+                    'aaaaaaaaa',
+                    'aaaaaaaaa',
+                    'aaaaaaaaa',
+                    'aaaaaaaaa',
+                    'aaaaaaaaa',
+                    'aaaaaaaaa',
+                    'aaaaaaaaa',
+                    'aaaaaaaaa',
+                    'aaaaaaaaa',
+                    'aaaaaaaaa'
+                ],
+                naming: {
+                    top: false,
+                    getLabel: function (character, row, column) {
+                        return column;
+                    }
+                },
+                legend: { /*定义图例*/
+                    node: $('#legend'),
+                    items: [
+                        ['a', 'available', '可选座'],
+                        ['a', 'unavailable', '已售出']
+                    ]
+                },
+                click: function () { /*点击事件*/
+                    if (this.status() == 'available') { /*可选座*/
+                        $('<li>' + (this.settings.row + 1) + '排' + this.settings.label + '座</li>')
+                            .attr('id', 'cart-item-' + this.settings.id)
+                            .data('seatId', this.settings.id)
+                            .appendTo($cart);
+
+                        $counter.text(sc.find('selected').length + 1);
+                        $total.text(recalculateTotal(sc) + price);
+                       /* console.log((this.settings.row + 1) + '排' + this.settings.label + '座')*/
+                        return 'selected';
+                    } else if (this.status() == 'selected') { /*已选中*/
+                        /*更新数量*/
+                        $counter.text(sc.find('selected').length - 1);
+                        /*更新总计*/
+                        $total.text(recalculateTotal(sc) - price);
+
+                        /*删除已预订座位*/
+                        $('#cart-item-' + this.settings.id).remove();
+                        /*可选座*/
+                        return 'available';
+                    } else if (this.status() == 'unavailable') { /*已售出*/
+                        return 'unavailable';
+                    } else {
+                        return this.style();
+                    }
+                }
+            });
+            /*已售出的座位*/
+
+            var menuList = @Html.Raw(Json.Encode(@ViewBag.seat))
+                console.log(menuList)
+            sc.get(menuList).status('unavailable');
+
+        });
+        /*计算总金额*/
+        function recalculateTotal(sc) {
+            var total = 0;
+            sc.find('selected').each(function () {
+                total += price;
+            });
+
+            return total;
+        }
+        function money() {
+            var ul = document.getElementById("selected-seats");
+            var li = ul.getElementsByTagName("li");
+            var a = document.getElementById("go");
+            var mon = document.getElementById("total")
+            var money = 1.0
+            console.log(money)
+            var all=[]
+            for (var i = 0; i < li.length; i++) {
+                all[i]=li[i].innerHTML
+            }
+            console.log(all);
+            a.href = "/TicketDetail/Pay?mname=" + "@ViewBag.movie.moviename" + "&fileid=" + "@ViewBag.hall.Fno" + "&cinema=" + "@ViewBag.cinema" + "&seats=" + all + "&money="+money
+            a.click();
+
+        }
+        new Vue({
+            el: '#app',
+        })
+        function select() {
+            console.log("Sss")
+            var text = document.getElementById("text").value
+            var a = document.createElement("a")
+            a.href = "/Index/selectmovie?moviename=" + text
+            a.click();
+        }
+    </script>
+</body>
+</html>

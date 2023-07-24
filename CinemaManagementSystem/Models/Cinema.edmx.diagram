@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8480f58ccf0a48608ed55733d63883fb" Name="Diagram1">
+        <EntityTypeShape EntityType="CinemaManageSystemModel.Admin" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.area" Width="1.5" PointX="5.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.CityInfo" Width="1.5" PointX="8.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.FilmInfor" Width="1.5" PointX="1.5" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.FilmOnInfor" Width="1.5" PointX="3.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.HallInfo" Width="1.5" PointX="11" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.MemberInfor" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.MovieInfo" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.MovieType" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.OrderDetail" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.refund" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.SeatInfor" Width="1.5" PointX="3.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.Ticket" Width="1.5" PointX="6" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.TicketAffair" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.WantSee" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.character" Width="1.5" PointX="5.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CinemaManageSystemModel.Year" Width="1.5" PointX="7.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK_HallInfo_CityInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK__FilmOnInfor__Fno__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK__SeatInfor__Fshow__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK__Ticket__Fshow__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK__Ticket__Mno__49C3F6B7" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK_MemberInfor_MemberInfor" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK_OrderDetail_MemberInfor" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK_refund_MemberInfor" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK_WantSee_MemberInfor" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK_WantSee_MovieInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK__Ticket__SeatID__48CFD27E" ManuallyRouted="false" />
+        <AssociationConnector Association="CinemaManageSystemModel.FK__TicketAffai__Tno__4D94879B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

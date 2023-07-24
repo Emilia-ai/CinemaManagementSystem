@@ -1,0 +1,58 @@
+﻿
+#times {
+    margin-top: 30px;
+    height: 130px;
+    width:80%;
+    background-color: #fff3f3;
+    line-height:60px;
+    margin-bottom:50px;
+}
+#times div{
+    margin-left:130px;
+}
+#times #d1{
+    font-size:2em;
+    color:black;
+}
+    #times #d2 {
+        font-size: 1.7em;
+        color:red
+    }
+#info {
+    width: 80%;
+   margin-top:10%;
+    margin-left: 112px;
+}
+#allright{
+    float:right;
+    margin-right:200px;
+    margin-top:30px;
+}
+#pay span{
+    color:red;
+    font-size:2.5em;
+}
+
+#bu button{
+    width:150px;
+    background-color:red;
+    height:35px;
+    line-height:35px;
+    border-radius:20px;
+    color:snow;
+    margin-top:10px;
+    padding-right:10px;
+    border:none;
+}
+.tab{
+    width:100%;
+}
+.tab tr{
+    height:60px;
+    text-align:center;
+    line-height:60px;
+        
+}
+.tab td{
+    width:200px;
+}

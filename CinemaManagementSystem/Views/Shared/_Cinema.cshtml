@@ -1,0 +1,74 @@
+﻿<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/vue.js"></script>
+<script src="~/Scripts/ElementUI/element-ui.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<div id="change">
+    <div class="nowmovie">
+        <div class="pf">
+            <h3 id="moviename">
+               @ViewBag.movies.moviename
+            </h3>
+            <p>
+                <span id="movienum">8.4</span>
+                <span>分</span>
+            </p>
+        </div>
+        <div class="xq">
+            <div>
+                <span>时长 :</span>
+                <span>@ViewBag.movies.duration</span>
+            </div>
+            <div>
+                <span>类型 :</span>
+                <span id="moviekind">@ViewBag.movies.typeclass</span>
+            </div>
+            <div>
+                <span>主演 :</span>
+                <span id="moviestar">@ViewBag.act</span>
+            </div>
+        </div>
+    </div>
+    <div class="date_list">
+        <ul>
+            <li>观影时间:</li>
+            <li class="activeli">今天 @DateTime.Now.ToLongDateString()</li>
+            <li>明天  @DateTime.Now.AddDays(1).ToLongDateString()</li>
+            <li>后天 @DateTime.Now.AddDays(2).ToLongDateString()</li>
+            <li>周六 @DateTime.Now.AddDays(3).ToLongDateString()</li>
+        </ul>
+    </div>
+    <div class="session">
+        <ul>
+            <li>
+                <span>放映时间</span>
+                <span>语言版本</span>
+                <span>放映厅</span>
+                <span style="color: rgb(58, 58, 58);">售价(元)</span>
+                <span>购票选座</span>
+            </li>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <span>
+                        @item.FStart.ToString("HH:mm") 开始
+                        <span class="end">
+                            @item.Fend.ToString("HH:mm") 散场
+                        </span>
+                    </span>
+                    <span class="langs">@ViewBag.lang</span>
+                    <span class="names">@item.Fname</span>
+                    <span class="money">￥@ViewBag.ticket</span>
+                    <a href="" id="go"></a><span class="btn" onclick="jump(@ViewBag.ids,@item.Fno)">购票选座</span>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>
+
+<script>
+</script>
+

@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/css/tailwind.min.css" />
+    <link rel="stylesheet" href="~/Content/css/style.css" />
+   
+</head>
+
+<body>
+    <div class="relative min-h-screen flex">
+        <div class="
+                    flex flex-col
+                    sm:flex-row
+                    items-center
+                    md:items-start
+                    sm:justify-center
+                    md:justify-start
+                    flex-auto
+                    min-w-0
+                    bg-white
+                ">
+            <div class="
+                        sm:w-1/2
+                        xl:w-3/5
+                        h-full
+                        hidden
+                        md:flex
+                        flex-auto
+                        items-center
+                        justify-center
+                        p-10
+                        overflow-hidden
+                        bg-purple-900
+                        text-white
+                        bg-no-repeat bg-cover
+                        relative
+                    "
+                 style="background-image:url(../../Content/img/img2.jpg)">
+                <div class="
+                            absolute
+                            bg-gradient-to-b
+                            from-indigo-600
+
+                            opacity-75
+                            inset-0
+                            z-0
+                        "></div>
+                <div class="w-full max-w-md z-10">
+                    <div class="sm:text-4xl xl:text-5xl font-bold leading-tight mb-6">夏日时光</div>
+                    <div class="sm:text-sm xl:text-md text-gray-200 font-normal">希望夏天橘子汽水一样的心动</div>
+                </div>
+                <!-- <ul class="circles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul> -->
+            </div>
+            <div class="
+                        md:flex md:items-center md:justify-center
+                        w-full
+                        sm:w-auto
+                        md:h-full
+                        w-2/5
+                        xl:w-2/5
+                        p-8
+                        md:p-10
+                        lg:p-14
+                        sm:rounded-lg
+                        md:rounded-none
+                        bg-white
+                    ">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+   
+</body>
+
+</html>
+
+

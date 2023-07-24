@@ -1,0 +1,129 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>实时票房榜</title>
+    <link rel="stylesheet" href="~/Content/css/layout.css">
+    <link rel="stylesheet" href="~/Content/css/header.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="~/Content/img/logo.png" type="image/x-icon">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body style="background-color:black" onload=" myrefresh()">
+    <div class="grid nav">
+        <div class="grid-cell-1"></div>
+        <div class="grid-cell-5">
+        </div>
+        <div class="grid-cell-1">
+           <div id="piaofang" >电影票房榜</div>
+        </div>
+        <div class="grid-cell-3">
+            <ul class="grid header-ul">
+                <li class="grid-cell-1"></li>
+                <li class="grid-cell-1"></li>
+                <li class="grid-cell-1"></li>
+                <li class="grid-cell-1"></li>
+                <li class="grid-cell-1"></li>
+                <li class="grid-cell-1"></li>
+            </ul>
+        </div>
+        <div class="grid-cell-1">
+            <div id="but">
+                <button>返回主页  ></button>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-top:30px;margin-left:20px;margin-right:10px">
+        <div style="width: 75%; color: white; background-color: #3e3d4b;border-radius:0.7rem;display:inline-block">
+            <div class="table-responsive">
+                <table class="table" id="box" >
+                    <thead>
+                        <tr>
+                            <th>影片</th>
+                            <th>当前票房</th>
+                            <th>票房占比</th>
+                            <th>上映天数</th>
+                            <th>总票房</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table">
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <tr >
+                                <td>@ViewBag.no[i]    @ViewBag.name[i]</td>
+                                <td id="price">@ViewBag.nowprice[i]万</td>
+                                <td>@ViewBag.bai[i]%</td>
+                                <td>@ViewBag.days[i]</td>
+                                <td>@ViewBag.total[i]</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="right">
+            <div id="center-right" >
+                <h3 style="color:white;text-align:center;line-height:50px;padding-top:20px">实时大盘</h3>
+                <div style="text-align:center">
+                    <span style="font-size:4em;color:orange;text-align:center">
+                        @ViewBag.all
+                    </span>
+                    <span style="font-size:1.5em;color:orange;margin-left:-10px;">万</span>
+                </div>
+            </div>
+            <div id="center-right-bottom">
+                @for (int i = 1; i < 6; i++)
+                {
+                    <li>
+                        <span class="zhuR1_2_2">
+                            <i class="qian23">@i</i>
+                            <span class="zhuR1_2_2_1">@ViewBag.name[i - 1]</span>
+                        </span>
+                        <span class="zhuR1_2_3">
+                            @ViewBag.nowprice[i - 1]
+                            <span class="zhuR1_2_3_1">万</span>
+                        </span>
+                    </li>
+                }
+            </div>
+        </div>
+    </div>
+    <script>
+       
+           
+        function myrefresh() {
+            //相关处理
+            checkMail();
+        }
+      //每分钟刷新一次
+        function checkMail() {
+            $.ajax({
+                type: "get",
+                url: "/Index/piaofang/",　　　　//请求链接格式：页面文件/请求的操作(页面的带有WebMethod前缀的静态函数)
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data) {
+                }
+            })
+        }
+        function test() {
+            window.location.reload();//可以换成上一篇博客的任何一种方法。
+            
+        }
+         setInterval(test, 30000);
+       
+
+    </script>
+</body>
+</html>

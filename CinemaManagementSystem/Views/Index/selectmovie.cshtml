@@ -1,0 +1,177 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>电影选择</title>
+    <link rel="stylesheet" href="~/Content/css/bangdan.css">
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <header class="dingbu">
+        <nav>
+            <a href="#" class="logo">
+                <img src="~/Content/img/logo.png" style="height:80px;width:100px;margin-top:-20px;" />
+            </a>
+            <div class="xiala1 bian">
+                <div class="xiala1_1">
+                    <a href="#" class="cd">成都</a>
+                    <span class="sanjiao"></span>
+                    <ul>
+                        <div class="xiala1_1_d">
+                            定位城市：
+                            <a href="#">成都</a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="/Index/Index">首页</a>
+                </li>
+                <li>
+                    <a href="/Index/Movie">电影</a>
+                </li>
+                <li>
+                    <a href="/Index/Cinema">影院</a>
+                </li>
+                <li>
+                    <a href="/Index/bangdan">榜单</a>
+                </li>
+            </ul>
+            <div class="shouji bian">
+                <span class="shouji_1"></span>
+                <span>APP下载</span>
+                <span class="sanjiao"></span>
+                <div class="shouji1">
+                    <div>
+                        <div></div>
+                    </div>
+                    <p>扫码下载APP</p>
+                    <p>选座更优惠</p>
+                </div>
+            </div>
+            <div class="sousuo">
+                <input class="sousuo_1" id="text" type="search" maxlength="32" placeholder="找电影" autocomplete="off">
+                <button class="sousuo_2" type="button" value="" onclick="select()"></button>
+            </div>
+            <div class="denglu bian">
+                <a href="#">
+                    <img src="@ViewBag.picture" class="img-circle" alt="Cinque Terre" width="100" height="52">
+                </a>
+
+                <div id="login">
+                    <a href="/LoginAndResinger/Login" target="blank" id="enter">登录</a>
+                    <a href="/UserInfo/Infoes" target="blank" class="myinfo">个人中心</a>
+                    <a href="/LoginAndResinger/Login" target="blank" class="myinfo">退出登录</a>
+                    <link rel="shortcut icon" href="~/Content/img/logo.png" type="image/x-icon">
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- 榜单 -->
+    <!-- 内容区域 -->
+    <div class="content" style="margin-top:100px;">
+        <div class="content1">
+            <div class="content1_1">
+                <p>
+                   
+                </p>
+                <p></p>
+            </div>
+            <dl>
+              
+
+
+                   @foreach (var item in ViewBag.select)
+                   {
+                        <dd>
+                            <div>
+                                <i class=""></i>
+                            </div>
+                            <div class="img">
+                                <a href="/Index/MovieDetail?id=@item.movieid">
+                                    <img src="@item.pic" alt="" style="width:160px;height:220px">
+                                </a>
+                            </div>
+                            <div>
+                                <div>
+                                    <a href="/Index/MovieDetail?id=@item.movieid" title="@item.moviename">@item.moviename</a>
+                                    <p>
+
+                                        主演：@item.actor
+
+                                    </p>
+                                    <p>上映时间：@item.releasedate</p>
+                                </div>
+                                <div>
+                                    <i>9.</i>
+                                    <i>4</i>
+                                </div>
+                            </div>
+
+                        </dd>
+                    
+               }
+            </dl>
+        </div>
+    </div>
+    <!-- 底部 -->
+    <footer>
+        <p>
+            商务合作邮箱：v@maoyan.com 客服电话：10105335 违法和不良信息举报电话：4006018900
+        </p>
+        <p>
+            投诉举报邮箱：tousujubao@meituan.com 舞弊线索举报邮箱：wubijubao@maoyan.com
+        </p>
+        <p>
+            友情链接 :
+            <a href="#">美团网</a>
+            <span></span>
+            <a href="#">美团下载</a>
+            <span></span>
+            <a href="#">欢喜首映</a>
+        </p>
+        <p>
+            ©2016猫眼电影 maoyan.com
+            <a href="#">京ICP证160733号</a>
+            <a href="#">京ICP备16022489号-1</a>
+            <a href="#">京公网安备 11010102003232号</a>
+            <a href="#">网络文化经营许可证</a>
+            <a href="#">电子公告服务规则</a>
+        </p>
+        <p>
+            北京猫眼文化传媒有限公司
+        </p>
+    </footer>
+    <script>
+           window.onload = function init() {
+            if (@ViewBag.code== 1) {
+                var info = document.getElementsByClassName("myinfo")
+                for (var i = 0; i < info.length; i++) {
+                    info[i].style.display = "none"
+                }
+
+            }
+            else {
+                var ent = document.getElementById("enter")
+                ent.style.display="none"
+            }
+        }
+        function select() {
+            console.log("Sss")
+            var text = document.getElementById("text").value
+            var a = document.createElement("a")
+            a.href = "/Index/selectmovie?moviename=" + text
+            a.click();
+        }
+    </script>
+</body>
+</html>

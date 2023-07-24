@@ -1,0 +1,390 @@
+﻿@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>夏日生活 -期待夏天橘子汽水一样的心动</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/ElementUI/element-ui.css" />
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/ElementUI/element-ui.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link rel="stylesheet" href="~/Content/css/index.css">
+    <link rel="shortcut icon" href="~/Content/img/logo.png" type="image/x-icon">
+</head>
+<body>
+    <!-- 顶部 -->
+    <header class="dingbu">
+        <nav>
+            <a href="#" class="logo">
+              <img src="~/Content/img/logo.png" style="height:80px;width:100px;margin-top:-20px"/>
+            </a>
+            <div class="xiala1 bian">
+                <div class="xiala1_1">
+                    <a href="#" class="cd">成都</a>
+                    <div id="app">
+                        <el-cascader size="large"
+                                     ref="addPoint"
+                                     placeholder="请选择"
+                                     :props="cityProps"
+                                     :options="cityOptions"
+                                     clearable
+                                     v-model="selectedOptions"
+                                     @@change="handleChange">
+                        </el-cascader>
+                    </div>
+                </div>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="/Index/Index">首页</a>
+                </li>
+                <li>
+                    <a href="/Index/Movie/">电影</a>
+                </li>
+                <li>
+                    <a href="/Index/Cinema/">影院</a>
+                </li>
+                <li>
+                    <a href="/Index/bangdan">榜单</a>
+                </li>
+             
+            </ul>
+            <div class="shouji bian">
+                <span class="shouji_1"></span>
+                <span>APP下载</span>
+                <span class="sanjiao"></span>
+                <div class="shouji1">
+                    <div>
+                        <div></div>
+                    </div>
+                    <p>扫码下载APP</p>
+                    <p>选座更优惠</p>
+                </div>
+            </div>
+            <div class="sousuo">
+                    <input class="sousuo_1"id="text" type="search" maxlength="32" placeholder="找电影" autocomplete="off">
+                    <button class="sousuo_2" type="button" value="" onclick="select()"></button>
+            </div>
+            <div class="denglu bian">
+                <a href="#">
+                    <img src="@ViewBag.picture" class="img-circle" alt="Cinque Terre" width="100" height="52">
+                </a>
+               
+                <div id="login">
+                    <a href="/LoginAndResinger/Login" target="blank" id="enter">登录</a>
+                    <a href="/UserInfo/Infoes" target="blank" class="myinfo">个人中心</a>
+                    <a href="/LoginAndResinger/Login" target="blank" class="myinfo">退出登录</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="mian" style="margin-top:150px">
+        <div class="mian1">
+            <article>
+                <!-- 正在热映 -->
+                <div class="zhuL1">
+                    <div class="zhuL1_1">
+                        <span class="zhuL1_1_1">正在热映(@ViewBag.nowmovie)部</span>
+                        @*<span class="zhuL1_1_2">
+                            <a href="/Index/Movie?id=1">全部</a>
+                            <span class="zhuL1_1_2_2"></span>
+                        </span>*@
+                    </div>
+                    <div class="zhuL1_2">
+                        <dl>
+                          @foreach (var item in Model)
+                          {
+                            <dd>
+                                <div class="zhuL1_2_1">
+                                    <a href="/Index/MovieDetail?id=@item.movieid">
+                                        <img src="@item.pic" alt="" style="width:160px;height:220px">
+                                        <div>
+                                            <span>
+                                                @item.moviename
+                                            </span>
+                                            <span>
+                                                @*@item.MovieScore*@
+                                            </span>
+                                        </div>
+                                        <i class="DIMAX3"></i>
+                                    </a>
+                                </div>
+                                <div class="zhuL1_2_2">
+                                    <a href="#">
+                                        购票
+                                    </a>
+                                </div>
+
+                            </dd>
+                          }
+                            
+                           
+                        </dl>
+                    </div>
+                </div>
+                <div class="zhuL2">
+                    <div class="zhuL2_1">
+                        <span class="zhuL2_1_1">即将上映（@ViewBag.notmovie）部</span>
+                        @*<span class="zhuL2_1_2">
+                            <a href="/Index/Movie?id=2">全部</a>
+                            <span class="zhuL2_1_2_2"></span>
+                        </span>*@
+                    </div>
+                    <dl>
+                        @foreach (var item in ViewBag.NotSalemovies)
+                        {
+                        <dd>
+                            <div class="zhuL2_2">
+                                <a href="/Index/MovieDetail?id=@item.movieid">
+                                    <div class="zhuL2_2_1">
+                                        <img src="@item.pic" alt="" style="width:160px;height:220px">
+                                        <div>
+                                            <span>@item.moviename</span>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="zhuL2_2_2">
+                                    <span>@item.WantSee</span>
+                                    人想看
+                                </div>
+                            </div>
+                            <div class="zhuL2_3">
+                               @item.releasedate.ToShortDateString() 上映
+                            </div>
+                        </dd>
+                        }
+                    </dl>
+                </div>
+                <div class="zhuL3"></div>
+            </article>
+            <aside>
+                <div class="zhuR1">
+                    <div class="zhuR1_1">
+                        <span>今日票房</span>
+                    </div>
+                    <div >
+                        <ul>
+                           
+                            @for (int i = 1; i < 6; i++)
+                            {
+                                <li id="li-piao">
+                                    <a href="#">
+                                        <span id="right-piao">
+                                            <i >@i</i>
+                                            <span >@ViewBag.name[i - 1]</span>
+                                        </span>
+                                        <span id="right-piao-2">
+                                            @ViewBag.nowprice[i - 1]
+                                            <span>万</span>
+                                        </span>
+                                    </a>
+                                </li>
+                            }
+
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="zhuR2">
+                    <div class="zhuR21">
+                        <span>今日大盘</span>
+                    </div>
+                    <div class="zhuR22">
+                        <p>
+                            <span class="zhuR22_1">
+                                <span class="zhuR22_12">@ViewBag.allprice</span>
+                                万
+                            </span>
+                            <span class="zhuR22_11">
+                                <a href="/Index/piaofang">查看更多</a>
+                                <i></i>
+                            </span>
+                        </p>
+                        <p>
+                            <span class="zhuR22_21">
+                               @DateTime.Now
+                            </span>
+                            <span class="zhuR22_22">实时票房数据</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="zhuR3">
+                    <div class="zhuR3_1">
+                        <span class="zhuR3_1_1">最受期待</span>
+                        <span class="zhuR3_1_2">
+                            <a href="#">查看完整榜单</a>
+                            <i></i>
+                        </span>
+                    </div>
+                    <div class="zhuR3_2">
+                        <ul>
+                            @foreach (var item in ViewBag.first)
+                            {
+                                <li class="zhuR3_21">
+                                    <a href="/Index/MovieDetail?id=@item.movieid">
+                                        <div class="zhuR3_21_1">
+                                            <i></i>
+                                            <img src=@item.pic alt="" style="width:140px;height:194px;">
+                                        </div>
+                                        <div class="zhuR3_21_2">
+                                            <div>
+                                                <span class="zhuR3_21_21">@item.moviename</span>
+                                                <p>上映时间：@item.releasedate.ToShortDateString()</p>
+                                                <p>
+                                                    <span>@item.WantSee</span>
+                                                    人想看
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+                            @foreach (var item in ViewBag.second)
+                            {
+                                <li class="zhuR3_22">
+                                    <a href="/Index/MovieDetail?id=@item.movieid">
+                                        <div class="zhuR3_22_1">
+                                            <img src=@item.pic alt="" style="width:170px;height:118px;">
+                                            <i style="float:left;margin-left:-170px">2</i>
+                                        </div>
+                                        <div class="zhuR3_22_2">
+                                            <p>@item.moviename</p>
+                                            <p>
+                                                <span>@item.WantSee</span>
+                                                人想看
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+                            @foreach (var item in ViewBag.third)
+                            {
+                                <li class="zhuR3_22">
+                                    <a href="/Index/MovieDetail?id=@item.movieid">
+                                        <div class="zhuR3_22_1">
+                                            <img src=@item.pic alt="" style="width:170px;height:118px;">
+                                            <i style="float:left;margin-left:-170px">3</i>
+                                        </div>
+                                        <div class="zhuR3_22_2">
+                                            <p>@item.moviename</p>
+                                            <p>
+                                                <span>@item.WantSee</span>
+                                                人想看
+                                            </p>
+                                        </div>
+                                    </a>
+                                </li>
+                            }
+                           @for (int i = 0; i < 1; i++)
+                                       {
+                                    int a = 4;
+
+                            foreach (var item in ViewBag.others)
+                            {
+
+                                <li class="zhuR3_23">
+                                    <a href="/Index/MovieDetail?id=@item.movieid">
+                                        <span class="zhuR3_2_2">
+                                            <i>@a</i>
+                                            <span class="zhuR3_2_2_1">@item.moviename</span>
+                                        </span>
+                                        <span class="zhuR3_2_3">
+                                            @item.WantSee
+                                            <span class="zhuR3_2_3_1">人想看</span>
+                                        </span>
+                                    </a>
+                                </li>
+                                   a++;
+                               }
+                           }
+                        </ul>
+                    </div>
+                </div>
+                
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function init() {
+            if (@ViewBag.code== 1) {
+                var info = document.getElementsByClassName("myinfo")
+                for (var i = 0; i < info.length; i++) {
+                    info[i].style.display = "none"
+                }
+                
+            }
+            else {
+                var ent = document.getElementById("enter")
+                ent.style.display="none"
+            }
+        }
+        function select() {
+            console.log("Sss")
+            var text = document.getElementById("text").value
+            var a = document.createElement("a")
+            a.href="/Index/selectmovie?moviename=" + text
+            a.click();
+        }
+        new Vue({
+            el: '#app',
+            data:
+                function () {
+                    return {
+                        /*获取数据的url key需要自己到高德地图申请噢*/
+                        url: 'https://restapi.amap.com/v3/config/district?keywords=&subdistrict=3&extensions=base&key=d087973c8af8ef28b4a5f66df7b323f1',
+                        /*选项列表*/
+                        cityOptions: [
+                        ],
+                        /*选项列表格式*/
+                        cityProps: {
+                            value: 'name',
+                            label: 'name',
+                            children: 'districts'
+                        }
+                    }
+                },
+            methods: {
+                /* 获取省市区选项 */
+                getCity() {
+                    axios.get(this.url).then(res => {
+                        this.cityOptions = this.getTreeData(res.data.districts[0].districts)
+                    })
+                },
+                /* 递归处理末尾项district为0的空项 */
+                getTreeData(data) {
+                    // 循环遍历返回的数据
+                    for (var i = 0; i < data.length; i++) {
+                        if (data[i].districts.length < 1) {
+                            // districts若为空数组，则将districts设为undefined
+                            data[i].districts = undefined
+                        } else {
+                            // districts若不为空数组，则继续 递归调用 本方法
+                            this.getTreeData(data[i].districts)
+                        }
+                    }
+                    return data
+                },
+                handleChange(value) {
+                    for (var i = 0; i < value.length; i++) {
+                        $("#all").html(value[0]);
+                    }
+                }
+            },
+            created() {
+                this.getCity()
+            },
+
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+#img{
+    
+    width: 270px;
+    height: 250px; 
+ 
+    
+}
+#img img{
+    width: 270px;
+    height: 250px; 
+}
+#change{
+    margin-top: 20px;
+    width: 160px;
+    height: 50px;
+ text-align: center;
+ border-radius: 20px;
+ border: none;
+ margin-left: 30px;
+ 
+}
+#btn {
+    border-radius:5px;
+    margin-top:30px;
+    margin-left:40px;
+    width: 120px;
+    height: 45px;
+    background: #39f;
+    line-height: 45px;
+    text-align: center;
+    color: #fff;
+}
+
+    #btn .file {
+        opacity: 0;
+        position: relative;
+        top: -56px;
+        width: 100%;
+        height: 45px;
+    }
+
+#left{
+    margin-top: 20px; 
+    margin-left: 20px;
+    width: 280px;
+    display: inline-block;
+    height: 400px;
+}
+#right{
+    float: right;
+    margin-top: 20px; 
+    margin-left: 20px;
+    margin-right: 200px;
+}
+#right .input{
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 30px;
+    width: 200px;
+   text-align: center;
+   margin-left: 20px;
+}
+.box{
+    width: 300px;
+    font-size: 1em;
+    margin-top: 30px;
+}
+.com{
+    height: 30px;
+    font-size: 1.3em;
+    width: 210px;
+    text-align: center;
+}
+.mon{
+    color: red;
+    font-weight: bold;
+    font-size: 1.5em;
+    
+}
+.char {
+    display: block;
+    margin-top: 20px;
+    width: 160px;
+    height: 50px;
+    text-align: center;
+    border-radius: 20px;
+    border: none;
+    margin-left: 30px;
+}
+.mon button{
+    display: block;
+    margin-top: 20px;
+    width: 160px;
+    height: 50px;
+ text-align: center;
+ border-radius: 20px;
+ border: none;
+ margin-left: 30px;
+}
+#inp {
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 30px;
+    width: 200px;
+    text-align: center;
+    margin-left: 20px;
+}

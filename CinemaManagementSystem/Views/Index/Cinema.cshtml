@@ -1,0 +1,512 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>影院  - 一网打尽好电影</title>
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link rel="stylesheet" href="~/Content/css/yingyuan.css">
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/ElementUI/element-ui.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @*<link rel="shortcut icon" href="~/Content/img/logo.png" type="image/x-icon">*@
+    <link rel="shortcut icon" href="~/Content/img/logo.png" type="image/x-icon">
+</head>
+<body>
+    <header class="dingbu">
+        <nav>
+            <a href="#" class="logo">
+                <img src="~/Content/img/logo.png" style="height:80px;width:100px;margin-top:-20px" />
+            </a>
+            <div class="xiala1 bian">
+                <div class="xiala1_1">
+                    <a href="#" class="cd">成都</a>
+                    <span class="sanjiao"></span>
+
+                </div>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="/Index/Index">首页</a>
+                </li>
+                <li>
+                    <a href="/Index/Movie">电影</a>
+                </li>
+                <li>
+                    <a href="/Index/Cinema">影院</a>
+                </li>
+                <li>
+                    <a href="/Index/bangdan">榜单</a>
+                </li>
+
+            </ul>
+            <div class="shouji bian">
+                <span class="shouji_1"></span>
+                <span>APP下载</span>
+                <span class="sanjiao"></span>
+                <div class="shouji1">
+                    <div>
+                        <div></div>
+                    </div>
+                    <p>扫码下载APP</p>
+                    <p>选座更优惠</p>
+                </div>
+            </div>
+            <div class="sousuo">
+                <input class="sousuo_1" id="text" type="search" maxlength="32" placeholder="找电影" autocomplete="off">
+                <button class="sousuo_2" type="button" value="" onclick="select()"></button>
+            </div>
+            <div class="denglu bian">
+                <a href="#">
+                    <img src="@ViewBag.picture" class="img-circle" alt="Cinque Terre" width="100" height="52">
+                </a>
+
+                <div>
+                    <a href="/LoginAndResinger/Login" target="blank" id="enter">登录</a>
+                    <a href="/UserInfo/Infoes" target="blank" class="myinfo">个人中心</a>
+                    <a href="/LoginAndResinger/Login" target="blank" class="myinfo">退出登录</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main">
+
+        @*---------------------------------------------------------------判断*@
+        <article class="xiangding" id="if">
+            <div class="beijing1">
+                <div class="beijing1_1">
+                    <div>
+                        <i></i>
+                        <a href="#">
+                            <img src=@ViewBag.pic alt="">
+                        </a>
+                    </div>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="beijing1_2">
+                    <div class="beijing1_2_1">
+                        <ul>
+                            <li>
+                                <h3>@ViewBag.moviename</h3>
+                            </li>
+
+                            @if (ViewBag.enname != null)
+                            {
+                                <li>
+                                    <p>其他名字: @ViewBag.enname</p>
+                                </li>
+                            }
+                            <li>
+                                <p>
+                                    导演:@ViewBag.director
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    演员:@ViewBag.actor
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    @ViewBag.typeclass
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    @ViewBag.country/@ViewBag.duration
+                                </p>
+                            </li>
+
+                            <li>
+                                <p>语言:@ViewBag.language</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="beijing1_2_2">
+                        <div class="beijing1_2_2_1">
+                            <a href="#">
+                                <i></i>
+                                <span>想看</span>
+                            </a>
+                        </div>
+                        <div class="beijing1_2_2_2">
+                            <a href="#">
+                                <i></i>
+                                <span>评分</span>
+                            </a>
+                        </div>
+                        <div class="beijing1_2_2_3">
+                            <a href="/Index/MovieDetail?id=@ViewBag.movieid">查看更多电影详情</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="beijing1_3">
+                    <div class="beijing1_3_1">
+                        <p class="beijing1_3_11">用户评分</p>
+                        <div class="beijing1_3_1_2">
+                            <div class="beijing1_3_1_21">
+                                <span>9.3</span>
+                            </div>
+                            <div class="beijing1_3_1_22">
+                                <div></div>
+                                <p>
+                                    <span>81.6</span>
+                                    <span>万人评分</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="beijing1_3_2">
+                        <p>累计票房</p>
+                        <p>
+                            <span>17.31</span>
+                            <span>亿</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+        @*-----------------------------------------------------------------判断*@
+        <article>
+            <!-- 电影详细分类 -->
+            <div class="lei">
+                <ul class="lei_1">
+                    <li>
+                        <div>
+                            品牌：
+                        </div>
+                        <ul class="lei_2">
+                            <li id="li-area">
+
+
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>
+                            行政区：
+                        </div>
+                        <ul class="lei_2">
+                            <li id="citieschange">
+
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </article>
+    </div>
+    <!-- 影院列表 -->
+    <div class="liebiao">
+        <h3>影院列表</h3>
+        <ul id="ul-main">
+            <!-- 1 -->
+            
+        </ul>
+    </div>
+    <!-- 页 -->
+   
+    <!-- 底部 -->
+    <footer>
+        <p>
+            商务合作邮箱：v@maoyan.com 客服电话：10105335 违法和不良信息举报电话：4006018900
+        </p>
+        <p>
+            投诉举报邮箱：tousujubao@meituan.com 舞弊线索举报邮箱：wubijubao@maoyan.com
+        </p>
+        <p>
+            友情链接 :
+            <a href="#">美团网</a>
+            <span></span>
+            <a href="#">美团下载</a>
+            <span></span>
+            <a href="#">欢喜首映</a>
+        </p>
+        <p>
+            ©2016猫眼电影 maoyan.com
+            <a href="#">京ICP证160733号</a>
+            <a href="#">京ICP备16022489号-1</a>
+            <a href="#">京公网安备 11010102003232号</a>
+            <a href="#">网络文化经营许可证</a>
+            <a href="#">电子公告服务规则</a>
+        </p>
+        <p>
+            北京猫眼文化传媒有限公司
+        </p>
+    </footer>
+    <!-- 喵 -->
+    <a class="miao" href="./zajindan.html" target="blank">
+    </a>
+
+
+
+    <script>
+        window.onload = function getCity() {
+             if (@ViewBag.code== 1) {
+                var info = document.getElementsByClassName("myinfo")
+                for (var i = 0; i < info.length; i++) {
+                    info[i].style.display = "none"
+                }
+
+            }
+            else {
+                var ent = document.getElementById("enter")
+                ent.style.display="none"
+            }
+
+            if (@ViewBag.change!= 1) {
+                document.getElementById("if").style.display="none"
+            }
+                        $.ajax({
+                            url: 'https://restapi.amap.com/v3/config/district?keywords=&subdistrict=1&extensions=base&key=d087973c8af8ef28b4a5f66df7b323f1',//控制器活动,返回一个分部视图,并且给分部视图传递数据.
+                            data: JSON.stringify,  //传递的参数使用JSON.stringify转译为JSON格式
+                            type: 'Get',
+                            contentType: 'application/json;charset=utf-8',//数据类型必须有
+                            success: function (data) //成功后的回调方法
+                            {
+                                var cities = getTreeData(data.districts[0].districts)
+                                test(cities);
+
+                            },
+                            error: function (data) {
+                                alert("失败:" + data[0])//弹出框
+                            }
+                        })
+            function getTreeData(data) {
+                // 循环遍历返回的数据
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].districts.length < 1) {
+                        // districts若为空数组，则将districts设为undefined
+                        data[i].districts = undefined
+                    } else {
+                        // districts若不为空数组，则继续 递归调用 本方法
+                        this.getTreeData(data[i].districts)
+                    }
+                }
+                return data
+            }
+            function test(data) {
+                var li = $("#li-area");
+                for (var i = 0; i < data.length; i++) {
+                    var input = document.createElement("input")
+                    input.type = "radio";
+                    input.id = "pingpai" + [i];
+                    input.value = data[i].name;
+                    input.name = "leixing";
+
+                    li.append(input);
+                    var la = document.createElement("label");
+                    la.setAttribute("for", "pingpai" + [i]);
+                    li.append(la);
+                    var a = document.createElement("a");
+                    a.text = data[i].name;
+                    a.setAttribute("onclick", "setarea()");
+                    la.appendChild(a);
+                    /* li.innerHTML = data[i].name*/
+
+                }
+                $("#pingpai0").attr("checked", "checked");
+                setarea()
+            }
+
+                    }
+
+//------------------------------------------------------------------------------------------获取每个区县
+        function setarea() {
+            setTimeout(function area() {
+                var type = $(':radio[name="leixing"]:checked').next().children().text();
+                getnextcity(type)
+
+            }, 500)
+        };
+
+                    //     < input type="radio" id="pingpai1" name="leixing" checked>
+                    //<label for="pingpai1">
+                    //    <a>全部</a>
+                    //</label>
+
+        function getnextcity(type) {
+            document.getElementById("citieschange").innerHTML = ""
+            $.ajax({
+                url: "https://restapi.amap.com/v3/config/district?keywords=" + type + "&subdistrict=2&key=d087973c8af8ef28b4a5f66df7b323f1",//控制器活动,返回一个分部视图,并且给分部视图传递数据.
+                data: JSON.stringify,  //传递的参数使用JSON.stringify转译为JSON格式
+                type: 'Get',
+                contentType: 'application/json;charset=utf-8',//数据类型必须有
+                success: function (data) //成功后的回调方法
+                {
+                    getnextData(data)
+
+                },
+                error: function (data) {
+                    alert("失败:" + data[0])//弹出框
+                }
+            })
+
+
+
+            function getnextData(data) {
+                //直辖市
+
+                if (data.districts[0].districts.length == 1) {
+
+                    var child_1 = data.districts[0].districts[0].districts
+
+                }
+                //其他省市区
+                if (data.districts[0].districts.length > 2) {
+                    var child_1 = data.districts[0].districts
+                }
+                if (data.districts[0].districts.length == 2) {
+                    var child_1 = data.districts[0].districts[0].districts
+                    var child_2 = data.districts[0].districts[1].districts
+                    console.log(child_1)
+                    console.log(child_2)
+                }
+                if (child_2 == null) {
+                    testnext(child_1)
+
+                }
+                else {
+                    var i = 0
+                    var s = child_1.length + child_2.length
+                    for (let index = child_2.length; index < s; index++) {
+                        child_2[index] = child_1[i]
+                        i++
+                    }
+                    testnext(child_2)
+                }
+
+            }
+        }
+
+        function testnext(data) {
+            var div = $("#citieschange");
+            for (var i = 0; i < data.length; i++) {
+                var input = document.createElement("input")
+                input.type = "radio";
+                input.id = "xingzheng" + [i];
+                input.value = data[i].name;
+                input.name = "quyu";
+                div.append(input);
+                var la = document.createElement("label");
+                la.setAttribute("for", "xingzheng" + [i]);
+                div.append(la);
+                var a = document.createElement("a");
+                a.text = data[i].name;
+                a.setAttribute("onclick", "cinemasget()");
+                la.appendChild(a);
+                /* li.innerHTML = data[i].name*/
+
+            }
+            $("#xingzheng0").attr("checked", "checked");
+            cinemasget()
+        }
+//---------------------------------------------------------------------------------获取电影院
+        function cinemasget() {
+            setTimeout(function area() {
+                var type = $(':radio[name="quyu"]:checked').next().children().text();
+                cinemas(type)
+
+            }, 500)
+
+        }
+        function cinemas(type) {
+            $.ajax({
+                url: "https://restapi.amap.com/v3/place/text?key=d087973c8af8ef28b4a5f66df7b323f1&keywords=电影院&types=&city=" + type + "&children=1&offset=20&page=1&extensions=all",//控制器活动,返回一个分部视图,并且给分部视图传递数据.
+                data: JSON.stringify,  //传递的参数使用JSON.stringify转译为JSON格式
+                type: 'Get',
+                dataType: "jsonp",
+                contentType: 'application/json;charset=utf-8',//数据类型必须有
+                success: function (data) //成功后的回调方法
+                {
+                    console.log(data)
+                    getData(data)
+
+                },
+                error: function (data) {
+                    alert("失败:" + data[0])//弹出框
+                }
+            })
+        }
+        function getData(data) {
+            var nextdata = data.pois
+            cinamasnext(nextdata)
+        }
+
+        function cinamasnext(data) {
+            document.getElementById("ul-main").innerHTML = ""
+            console.log(data)
+            var ul = $("#ul-main");
+            for (var i = 0; i < data.length; i++) {
+                var li = document.createElement("li")
+                var div_1 = document.createElement("div")
+                var a = document.createElement("a")
+                a.text = data[i].name
+                a.href = "/Index/CinemaDetail?id=" + data[i].id+"&movieid="+@ViewBag.movieid
+                a.setAttribute("onclick", "cinemadetail(this)")
+                //var span_3 = document.createElement("span")
+
+                //span_3.innerHTML = data[i].entr_location
+                //var span_4 = document.createElement("span")
+                //span_4.innerHTML = data[i].id
+                //span_3.className = "other"
+                //span_4.className="other_1"
+                //a.append(span_3)
+                //a.append(span_4)
+                var p = document.createElement("p")
+                p.innerHTML = data[i].address
+                div_1.append(a)
+                div_1.append(p)
+                li.append(div_1)
+                //  第二个div
+                var div_2 = document.createElement("div")
+                var p_2 = document.createElement("p")
+                var span_1 = document.createElement("span")
+                span_1.innerHTML = "评分"
+                var span_2 = document.createElement("span")
+                span_2.innerHTML = data[i].biz_ext.rating
+                p_2.append(span_1)
+                p_2.append(span_2)
+                div_2.append(p_2)
+                li.append(div_2)
+                ul.append(li)
+            }
+
+            //var judge = document.getElementsByClassName("other");
+            //var j = document.getElementsByClassName("other_1")
+            //for (var i = 0; i < judge.length; i++) {
+
+            //    judge[i].style.display = "none"
+            //}
+            //for (var i = 0; i < j.length; i++) {
+            //    j[i].style.display = "none"
+            //}
+        }
+        //-----------------------------------------------------------------------传递到下一页
+        function cinemadetail(data) {
+            console.log(data)
+            var c = data.innerText
+            console.log(c)
+        }
+        function select() {
+            console.log("Sss")
+            var text = document.getElementById("text").value
+            var a = document.createElement("a")
+            a.href = "/Index/selectmovie?moviename=" + text
+            a.click();
+        }
+    </script>
+</body>
+</html>

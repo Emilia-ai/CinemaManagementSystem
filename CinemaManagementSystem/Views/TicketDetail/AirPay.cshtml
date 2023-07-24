@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>小叮当支付付款</title>
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <style type="text/css">
+        .font_content {
+            font-family: "宋体";
+            font-size: 14px;
+            color: #FF6600;
+        }
+
+        .font_title {
+            font-family: "宋体";
+            font-size: 16px;
+            color: #FF0000;
+            font-weight: bold;
+        }
+
+        table {
+            border: 1px solid #CCCCCC;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+    <script>
+        window.onload = function myfunction() {
+
+        
+         $.ajax({
+                 type: "get",
+                 url: "/TicketDetail/Pays/",　　　　//请求链接格式：页面文件/请求的操作(页面的带有WebMethod前缀的静态函数)
+                 @*data: JSON.stringify　　　　　　　  //传递的参数使用JSON.stringify转译为JSON格式
+                     ({
+                    "mname":"@ViewBag.mname",
+                    "fileno":"@ViewBag.File",
+                    "cinema":"@ViewBag.cinema",
+                    "seat":"@ViewBag.seat",
+                    "money":"@ViewBag.money",
+                         /*"code": $("#UserName").val(),*/
+                         //传递给后台的参数格式："参数名":值。参数名与参数个数一定要与后台函数的参数名及参数个数完全一致
+                     }),*@
+                 contentType: "application/json",
+                 dataType: "html",
+             success: function (data) {
+                 console.log(data)
+                 document.getElementById("container").innerHTML = data;
+                 document.getElementById("sub").click();
+                 },
+                 error: function (err) {
+
+                     console.log(err);
+                 }
+         })
+        }
+    </script>
+</body>
+</html>

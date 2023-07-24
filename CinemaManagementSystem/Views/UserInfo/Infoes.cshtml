@@ -1,0 +1,374 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>个人信息</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/css/CinemaIndex.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/css/clear.css">
+    <link rel="stylesheet" href="~/Content/css/personal.css">
+    <link rel="stylesheet" href="~/Content/css/userinfo.css">
+    <link rel="stylesheet" href="~/Content/ElementUI/element-ui.css" />
+    <script src="~/Scripts/vue.js"></script>
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link rel="stylesheet" href="~/Content/css/index.css">
+    <script src="~/Scripts/ElementUI/element-ui.js"></script>
+</head>
+<body>
+    <header class="dingbu">
+        <nav>
+            <a href="#" class="logo">
+                <img src="~/Content/img/logo.png" style="height:80px;width:100px;margin-top:-20px" />
+            </a>
+            <div class="xiala1 bian">
+                <div class="xiala1_1">
+                    <a href="#" class="cd">成都</a>
+                    <div id="app">
+                        <el-cascader size="large"
+                                     ref="addPoint"
+                                     placeholder="请选择"
+                                     :props="cityProps"
+                                     :options="cityOptions"
+                                     clearable
+                                     v-model="selectedOptions"
+                                     @@change="handleChange">
+                        </el-cascader>
+                    </div>
+                </div>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="/Index/Index">首页</a>
+                </li>
+                <li>
+                    <a href="/Index/Movie/">电影</a>
+                </li>
+                <li>
+                    <a href="/Index/Cinema/">影院</a>
+                </li>
+                <li>
+                    <a href="/Index/bangdan">榜单</a>
+                </li>
+
+            </ul>
+            <div class="shouji bian">
+                <span class="shouji_1"></span>
+                <span>APP下载</span>
+                <span class="sanjiao"></span>
+                <div class="shouji1">
+                    <div>
+                        <div></div>
+                    </div>
+                    <p>扫码下载APP</p>
+                    <p>选座更优惠</p>
+                </div>
+            </div>
+            <div class="sousuo">
+                <input class="sousuo_1" id="text" type="search" maxlength="32" placeholder="找电影" autocomplete="off">
+                <button class="sousuo_2" type="button" value="" onclick="select()"></button>
+            </div>
+            <div class="denglu bian">
+                <a href="#">
+                    <img src="@ViewBag.picture" class="img-circle" alt="Cinque Terre" width="100" height="52">
+                </a>
+
+                <div id="login">
+                    <a href="/LoginAndResinger/Login" target="blank" id="enter">登录</a>
+                    <a href="/UserInfo/Infoes" target="blank" class="myinfo">个人中心</a>
+                    <a href="/LoginAndResinger/Login" target="blank" class="myinfo">退出登录</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 页面主体 -->
+    <div class="main">
+        <div class="content">
+            <div class="left">
+                <ul>
+                    <li>个人中心</li>
+                    <li class="activeli" onclick="clicks(1)" id="ord">我的订单</li>
+                    <li id="infomation" onclick="clicks(2)">基本信息</li>
+                </ul>
+            </div>
+            <div id="changes" style="width:78%;height:500px">
+                <div class="ringht" style="position:relative">
+                    <div class="top">
+                        <p>我的订单</p>
+                    </div>
+                    @if (ViewBag.noresult == 1)
+                    {
+                        <div style="padding: 500px,100px">您暂无订单哦</div>
+                    }
+                    else
+                    {
+                        <ul>
+
+                            @foreach (var item in ViewBag.infoes)
+                            {
+                                <li>
+                                    <div class="tops">
+                                        <p>
+                                            <span>@item.creattime.ToLongDateString()</span>
+                                            <span>夏日生活订单编号:@item.Orderid</span>
+                                            <span style="margin-left:145px;color:gray">价格</span>
+                                            <span style="margin-left:95px;color:gray">状态</span>
+                                        </p>
+
+                                    </div>
+                                    <div class="bottoms">
+                                        <div class="lefts">
+                                            <i>
+                                                <img src="@item.pic" alt="">
+                                            </i>
+                                            <div class="name">
+                                                <p>@item.moviename</p>
+                                                <p>@item.cinema</p>
+                                                <p>@item.Seat</p>
+                                                <p>@item.time</p>
+                                            </div>
+                                        </div>
+                                        <div class="ringhts">
+                                            <span>￥@item.price</span>
+                                            @if (DateTime.Compare(Convert.ToDateTime(item.year), DateTime.Now) > 0)
+                                            {
+
+                                                <span style="color:red">待观看</span>
+                                            }
+                                            else
+                                            {
+                                                <span style="color:red">已完成</span>
+                                            }
+
+                                            @if (DateTime.Compare(Convert.ToDateTime(item.year), DateTime.Now) > 0)
+                                            {
+                                                bool i = false;
+                                                foreach (var newitem in ViewBag.refund)
+                                                {
+                                                    if (item.Orderid == newitem.orderid)
+                                                    {
+                                                        if (newitem.State == 1)
+                                                        {
+                                                            i = true;
+                                                            <span>待处理</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            i = true;
+                                                            <span>退票成功</span>
+                                                        }
+                                                    }
+
+                                                }
+                                                if (i == false)
+                                                {
+
+
+                                                    <span><a href="/UserInfo/refund?code=@item.Orderid">退票</a></span>
+
+
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <span style="color:cornflowerblue"><a href="/UserInfo/DeleteDetail?code=@item.Orderid">删除</a></span>
+
+                                            }
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+
+
+                        </ul>
+                    }
+                    </div>
+            </div>
+        </div>
+    </div>
+    <!-- 页面底部 -->
+    <div class="footer" style="visibility: visible; position: fixed; left: 0; bottom: 0; width: 100%;">
+        <p class="friendly-links">
+            关于猫眼 :
+            <a href="#" target="_blank">关于我们</a>
+            <span></span>
+            <a href="#" target="_blank">管理团队</a>
+            <span></span>
+            <a href="#" target="_blank">投资者关系</a> &nbsp;&nbsp;&nbsp;&nbsp; 友情链接 :
+            <a href="#" data-query="utm_source=wwwmaoyan" target="_blank">美团网</a>
+            <span></span>
+            <a href="#" data-query="utm_source=wwwmaoyan">格瓦拉</a>
+            <span></span>
+            <a href="#" data-query="utm_source=wwwmaoyan" target="_blank">美团下载</a>
+            <span></span>
+            <a href="#" data-query="utm_source=maoyan_pc" target="_blank">欢喜首映</a>
+        </p>
+        <p class="friendly-links">
+            商务合作邮箱：v@maoyan.com 客服电话：10105335 违法和不良信息举报电话：4006018900
+        </p>
+        <p class="friendly-links">
+            用户投诉邮箱：tousujubao@meituan.com 舞弊线索举报邮箱：wubijubao@maoyan.com
+        </p>
+        <p class="friendly-links  credentials">
+            <a href="#" target="_blank">中华人民共和国增值电信业务经营许可证 京B2-20190350</a>
+            <span></span>
+            <a href="#" target="_blank">营业性演出许可证 京演（机构）（2019）4094号</a>
+        </p>
+        <p class="friendly-links  credentials">
+            <a href="#" target="_blank">广播电视节目制作经营许可证 （京）字第08478号</a>
+            <span></span>
+            <a href="#" target="_blank">网络文化经营许可证 京网文（2019）3837-369号 </a>
+        </p>
+        <p class="friendly-links  credentials">
+            <a href="#" target="_blank">猫眼用户服务协议 </a>
+            <span></span>
+            <a href="#" target="_blank">猫眼平台交易规则总则 </a>
+            <span></span>
+            <a href="#" target="_blank">隐私政策 </a>
+        </p>
+        <p class="friendly-links  credentials">
+            <a href="" target="_blank">
+                京公网安备
+                11010102003232号
+            </a>
+            <span></span>
+            <a href="#/" target="_blank">京ICP备16022489号</a>
+        </p>
+        <p>北京猫眼文化传媒有限公司</p>
+        <p>
+            ©<span class="my-footer-year">2020</span> 猫眼电影 maoyan.com
+        </p>
+        <div class="certificate">
+            <a href="#" target="_blank">
+                <img src="http://p0.meituan.net/moviemachine/e54374ccf134d1f7b2c5b075a74fca525326.png">
+            </a>
+            <a href="#" target="_blank">
+                <img src="http://p1.meituan.net/moviemachine/805f605d5cf1b1a02a4e3a5e29df003b8376.png">
+            </a>
+            <a href="h#" target="_blank">
+                <img src="http://p0.meituan.net/scarlett/3cd2a9b7dc179531d20d27a5fd686e783787.png">
+            </a>
+        </div>
+    </div>
+    <div id="app" style="display:none">
+        <el-button type="text" @@click="open" id="code" style="display:none">点击打开 Message Box</el-button>
+    </div>
+    <script>
+        window.onload = function init() {
+            if (@ViewBag.code== 1) {
+                var info = document.getElementsByClassName("myinfo")
+                for (var i = 0; i < info.length; i++) {
+                    info[i].style.display = "none"
+                }
+
+            }
+            else {
+                var ent = document.getElementById("enter")
+                ent.style.display="none"
+            }
+        }
+
+        function clicks(data) {
+            var ht = document.getElementById("changes")
+            var ord = document.getElementById("ord")
+            var inf = document.getElementById("infomation")
+            ht.innerHTML = null
+            if (data == 1) {
+                ord.className = "activeli";
+                inf.className=""
+            }
+            else {
+                ord.className = "";
+                inf.className = "activeli"
+            }
+                $.ajax({
+                    url: '/UserInfo/Infoes',//控制器活动,返回一个分部视图,并且给分部视图传递数据.
+                    data: JSON.stringify　　　　　　　  //传递的参数使用JSON.stringify转译为JSON格式
+                        ({
+                            "model": data,
+
+                        }),
+                    type: 'Post',
+                    contentType: 'application/json;charset=utf-8',//数据类型必须有
+                    async: true,//异步
+                    success: function (data) //成功后的回调方法
+                    {
+
+                        $("#changes").html(data);
+
+                    },
+                    error: function (data) {
+                        alert("失败:" + data[0])//弹出框
+                    }
+
+                });
+
+        }
+        function char() {
+
+            var code = document.getElementById("inp").value
+            console.log(code)
+            if (code == "maria131") {
+                $.ajax({
+                    type: "post",
+                    url: "/UserInfo/charge/",　　　　//请求链接格式：页面文件/请求的操作(页面的带有WebMethod前缀的静态函数)
+                    data: JSON.stringify　　　　　　　  //传递的参数使用JSON.stringify转译为JSON格式
+                        ({
+                            "code": code
+                            /*"code": $("#UserName").val(),*/
+                            //传递给后台的参数格式："参数名":值。参数名与参数个数一定要与后台函数的参数名及参数个数完全一致
+                        }),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data == 1) {
+                            var mo = document.getElementById("code")
+                            mo.click();
+                        }
+
+                    },
+                    error: function (err) {
+
+                        console.log(err);
+                    }
+                })
+            }
+            else {
+
+            }
+        }
+        new Vue({
+            el: '#app',
+            methods: {
+                flash() {
+                    location.reload();
+                },
+                open() {
+                    this.$alert('兑换成功', '提示！', {
+                        confirmButtonText: '确定',
+                        callback: action => {
+                            this.flash()
+                        }
+                    });
+                }
+            }
+        })
+        function select() {
+            console.log("Sss")
+            var text = document.getElementById("text").value
+            var a = document.createElement("a")
+            a.href = "/Index/selectmovie?moviename=" + text
+            a.click();
+        }
+
+    </script>
+</body>
+</html>

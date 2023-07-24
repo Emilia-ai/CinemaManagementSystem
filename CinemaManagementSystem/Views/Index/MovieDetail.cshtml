@@ -1,0 +1,802 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>电影详情</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link rel="stylesheet" href="~/Content/css/dianyingxiangqing.css">
+    <link rel="shortcut icon" href="~/Content/img/logo.png" type="image/x-icon">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link rel="shortcut icon" href="~/Content/img/logo.png" type="image/x-icon">
+</head>
+<body>
+    <!-- 顶部 -->
+    <header class="dingbu">
+        <nav>
+            <a href="#" class="logo"></a>
+            <div class="xiala1 bian">
+                <div class="xiala1_1">
+                    <a href="#" class="cd">成都</a>
+                    <span class="sanjiao"></span>
+                    <ul>
+                        <div class="xiala1_1_d">
+                            定位城市：
+                            <a href="#">成都</a>
+                        </div>
+
+                    </ul>
+                </div>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="/Index/Index">首页</a>
+                </li>
+                <li>
+                    <a href="/Index/Movie/">电影</a>
+                </li>
+                <li>
+                    <a href="/Index/Cinema">影院</a>
+                </li>
+                <li>
+                    <a href="/Index/bangdan">榜单</a>
+                </li>
+
+            </ul>
+            <div class="shouji bian">
+                <span class="shouji_1"></span>
+                <span>APP下载</span>
+                <span class="sanjiao"></span>
+                <div class="shouji1">
+                    <div>
+                        <div></div>
+                    </div>
+                    <p>扫码下载APP</p>
+                    <p>选座更优惠</p>
+                </div>
+            </div>
+            <div class="sousuo">
+                <input class="sousuo_1" id="text" type="search" maxlength="32" placeholder="找电影" autocomplete="off">
+                <button class="sousuo_2" type="button" value="" onclick="select()"></button>
+            </div>
+            <div class="denglu bian">
+                <a href="#">
+                    <img src="@ViewBag.picture" class="img-circle" alt="Cinque Terre" width="100" height="52">
+                </a>
+
+                <div>
+                    <a href="/LoginAndResinger/Login" target="blank" id="enter">登录</a>
+                    <a href="/UserInfo/Infoes" target="blank" class="myinfo">个人中心</a>
+                    <a href="/LoginAndResinger/Login" target="blank" class="myinfo">退出登录</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- 详情头 -->
+    <article class="xiangding">
+        <div class="beijing1">
+            <div class="beijing1_1">
+                <div>
+                    <i></i>
+                    <a href="#">
+                        <img src=@Model.pic alt="">
+                    </a>
+                </div>
+                <div>
+
+                </div>
+            </div>
+            <div class="beijing1_2">
+                <div class="beijing1_2_1">
+                    <ul>
+                        <li>
+                            <h3>@Model.moviename</h3>
+                        </li>
+
+                        @if (Model.enname != null)
+                        {
+                            <li>
+                                <p>其他名字: @Model.enname</p>
+                            </li>
+                        }
+                        <li>
+                            <p>
+                                导演:@Model.director
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                演员:@ViewBag.actor
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                @Model.typeclass
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                @Model.country/@Model.duration
+                            </p>
+                        </li>
+                        <li>
+                            <p>@Model.releasedate.ToShortDateString() 大陆上映</p>
+                        </li>
+                        <li>
+                            <p>语言:@Model.language</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="beijing1_2_2">
+                    <div class="beijing1_2_2_1">
+                        <a onclick="WantSee()">
+                            <span id="want">
+                                @if (ViewBag.imgs ==2)
+                                {
+                                    <i style="background: url('/Content/BodyImgs/redxin.png') no-repeat;"></i>
+                                }
+                                else
+                                {
+                                    <i style="background: url('/Content/BodyImgs/xin.png') no-repeat;"></i>
+                                }
+                            </span>
+                            <span>想看</span>
+                        </a>
+                    </div>
+                    <div class="beijing1_2_2_2">
+                        <a href="#">
+                            <i></i>
+                            <span>评分</span>
+                        </a>
+                    </div>
+                    <div class="beijing1_2_2_3">
+                        <a href="/Index/Cinema?id=@Model.movieid">特惠购票</a>
+                    </div>
+                </div>
+            </div>
+            <div class="beijing1_3">
+                <div class="beijing1_3_1">
+                    <p class="beijing1_3_11">用户评分</p>
+                    <div class="beijing1_3_1_2">
+                        <div class="beijing1_3_1_21">
+                            <span>9.3</span>
+                        </div>
+                        <div class="beijing1_3_1_22">
+                            <div></div>
+                            <p>
+                                <span>81.6</span>
+                                <span>万人评分</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="beijing1_3_2">
+                    <p>累计票房</p>
+                    <p>
+                        <span>17.31</span>
+                        <span>亿</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </article>
+    <!-- 内容部分 -->
+    <div class="content">
+        <article>
+            @*<div class="content_L1">
+            <section class="content_L1_1">
+                <ul>
+                    <li>
+                        <input type="radio" id="jieshao" name="lei" checked>
+                        <label for="jieshao">
+                            <a>介绍</a>
+                        </label>
+                        <input type="radio" id="yanzhirenyuan" name="lei">
+                        <label for="yanzhirenyuan">
+                            <a>演职人员</a>
+                        </label>
+                        <input type="radio" id="jiangxiang" name="lei">
+                        <label for="jiangxiang">
+                            <a>奖项</a>
+                        </label>
+                        <input type="radio" id="tuji" name="lei">
+                        <label for="tuji">
+                            <a>图集</a>
+                        </label>
+                    </li>
+                </ul>
+            </section>
+        </div>*@
+            <div class="content_L2">
+                <h3>剧情简介</h3>
+                <p>@Model.summary</p>
+            </div>
+            <!--<div class="content_L3" style="width:730px">
+        <div class="content_L3_1">
+            <h3>演职人员</h3>
+            <div class="content_L3_11">
+
+                <i></i>
+            </div>
+        </div>
+        <div class="content_L3_2">
+            <ul>
+                <div>
+
+                </div>
+                @foreach (var item in ViewBag.dirtor)
+                {
+                    <li>
+                        <div>
+                            导演
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img src="/Content/BodyImgs/duye_yanzhi_1.jpg" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                @item
+                            </a>
+                        </div>
+                    </li>
+                }-->
+            <!-- 1 -->
+            <!-- 2 -->
+            <!--<div style="margin-left:20px">
+                    演员
+                </div>
+                    @foreach (var item in ViewBag.actor)
+                    {
+                    <li>
+                        <div>
+
+                        </div>
+                        <div>
+                            <a href="#">
+                                <img src="/Content/BodyImgs/duye_yanzhi_2.jpg" alt="">
+                            </a>
+                        </div>
+                        <div>
+                            <a href="#">
+                                @item
+                            </a>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+
+    </div>-->
+            @*<div class="content_L4">
+            <div class="content_L4_1">
+                <h3>图集</h3>
+                <div class="content_L4_11">
+                    <a href="#">全部</a>
+                    <i></i>
+                </div>
+            </div>
+            <div class="content_L4_2">
+                <div class="content_L4_2_1">
+                    <a href="#">
+                        <img src="/Content/BodyImgs/duye_tuji_1.jpg" alt="">
+                    </a>
+                </div>
+                <div class="content_L4_2_2">
+                    <div>
+                        <a href="#">
+                            <img src="/Content/BodyImgs/duye_tuji_2.jpg" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <img src="/Content/BodyImgs/duye_tuji_3.jpg" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <img src="/Content/BodyImgs/duye_tuji_4.jpg" alt="">
+                        </a>
+                    </div>
+                    <div>
+                        <a href="#">
+                            <img src="/Content/BodyImgs/duye_tuji_5.jpg" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+            <aside>
+                <div class="content_R6">
+                    <div class="content_R2_1">
+                        <h3>相关电影</h3>
+                    </div>
+                    <dl>
+                        @for (int i = 0; i < 10; i++)
+                        {
+                            <dd>
+                                <a href="/Index/MovieDetail?id=@ViewBag.Sameid[i]">
+                                    <div> 
+                                        <img src="@ViewBag.Samepic[i]" alt="" style="height:145px;width:106px">
+                                    </div>
+                                    <div style="margin-left:-15px">
+                                        @ViewBag.Samename[i]
+                                        <p>暂无评分</p>
+                                    </div>
+                                </a>
+                            </dd>
+                        }
+
+
+                        <!-- 1 -->
+
+                    </dl>
+                </div>
+            </aside>
+            <div class="content_L5">
+                <div class="content_L5_1">
+                    <h3>热门短评</h3>
+                    <div class="content_L5_11">
+                        <a href="#">写短评</a>
+                    </div>
+                </div>
+                <div class="content_L5_2">
+                    <ul>
+                        <!-- 1 -->
+                        <li>
+                            <div class="content_L5_2_1">
+                                <img src="/Content/BodyImgs/duye_reping_1.jpg" alt="">
+                                <i class="v1"></i>
+                            </div>
+                            <div class="content_L5_2_2">
+                                <div class="content_L5_2_2_1">
+                                    <span class="content_L5_2_2_11">Monster6697</span>
+                                    <span class="content_L5_2_2_12">购</span>
+                                </div>
+                                <div class="content_L5_2_2_2">
+                                    <div>
+                                        <span>11-09</span>
+                                        <i class="xin5"></i>
+                                    </div>
+                                    <div>
+                                        <a href="./login.html" target="blank"></a>
+                                        <span>13690</span>
+                                    </div>
+                                </div>
+                                <p>电影很好看，但是开场验票才告诉我自带3D眼镜？？？搞得我裸眼看3D看了一个多小时，真的是弟弟行为！</p>
+                            </div>
+                        </li>
+                        <!-- 2 -->
+                        <li>
+                            <div class="content_L5_2_1">
+                                <img src="/Content/BodyImgs/duye_reping_2.jpg" alt="">
+                                <i class="v4"></i>
+                            </div>
+                            <div class="content_L5_2_2">
+                                <div class="content_L5_2_2_1">
+                                    <span class="content_L5_2_2_11">A名犬乐园 （定金选狗）款到发货</span>
+                                    <span class="content_L5_2_2_12">购</span>
+                                </div>
+                                <div class="content_L5_2_2_2">
+                                    <div>
+                                        <span>11-09</span>
+                                        <i class="xin5"></i>
+                                    </div>
+                                    <div>
+                                        <a href="./login.html" target="blank"></a>
+                                        <span>7792</span>
+                                    </div>
+                                </div>
+                                <p>真的太震撼了，漫威从来没有让我失望，虽然好多地方我感觉像是被删减过许多吓人的画面，但是真的还是太好看，好多地方从头到尾一直在笑，最后还有一点小感人。一直都是震撼幽默的画面。真希望可以能有第二部的上映。这个毒液系列希望像蜘蛛侠钢铁侠一样出一个系列有续集，真的没有看过瘾啊。（人生第一次评价话有点多）总之，大家可以去观看，我是电影迷这一部我给11分，强烈大家去观看！</p>
+                            </div>
+                        </li>
+                        <!-- 3 -->
+                        <li>
+                            <div class="content_L5_2_1">
+                                <img src="/Content/BodyImgs/duye_reping_3.jpg" alt="">
+                                <i class="v5"></i>
+                            </div>
+                            <div class="content_L5_2_2">
+                                <div class="content_L5_2_2_1">
+                                    <span class="content_L5_2_2_11">草木灰011</span>
+                                    <span class="content_L5_2_2_12">购</span>
+                                </div>
+                                <div class="content_L5_2_2_2">
+                                    <div>
+                                        <span>11-09</span>
+                                        <i class="xin5"></i>
+                                    </div>
+                                    <div>
+                                        <a href="./login.html" target="blank"></a>
+                                        <span>5726</span>
+                                    </div>
+                                </div>
+                                <p>毫无疑问，《毒液》是索尼出品年度最炫酷的(漫威）超级英雄电影之一，还是原来搞笑的配方、无敌的撩妹技能，可爱的汤老师，萌萌的毒液，简直绝配！！！</p>
+                            </div>
+                        </li>
+                        <!-- 4 -->
+                        <li>
+                            <div class="content_L5_2_1">
+                                <img src="/Content/BodyImgs/duye_reping_4.jpg" alt="">
+                                <i class="v3"></i>
+                            </div>
+                            <div class="content_L5_2_2">
+                                <div class="content_L5_2_2_1">
+                                    <span class="content_L5_2_2_11">宝贝</span>
+                                    <span class="content_L5_2_2_12">购</span>
+                                </div>
+                                <div class="content_L5_2_2_2">
+                                    <div>
+                                        <span>11-09</span>
+                                        <i class="xin5"></i>
+                                    </div>
+                                    <div>
+                                        <a href="./login.html" target="blank"></a>
+                                        <span>1401</span>
+                                    </div>
+                                </div>
+                                <p>很好看，不错，可惜了买了两张票，自己一个人看完😌 </p>
+                            </div>
+                        </li>
+                        <!-- 5 -->
+                        <li>
+                            <div class="content_L5_2_1">
+                                <img src="/Content/BodyImgs/duye_reping_5.jpg" alt="">
+                                <i class="v3"></i>
+                            </div>
+                            <div class="content_L5_2_2">
+                                <div class="content_L5_2_2_1">
+                                    <span class="content_L5_2_2_11">洋洋</span>
+                                    <span class="content_L5_2_2_12">购</span>
+                                </div>
+                                <div class="content_L5_2_2_2">
+                                    <div>
+                                        <span>11-12</span>
+                                        <i class="xin5"></i>
+                                    </div>
+                                    <div>
+                                        <a href="./login.html" target="blank"></a>
+                                        <span>1301</span>
+                                    </div>
+                                </div>
+                                <p>
+                                    是真的好看 完全看不过瘾啊 我感觉删减了 真的烦 后面结局真的有点看不懂 说再见了 怎么莫名其妙毒液又回来了 完全看不过瘾啊啊啊啊啊 我不知道最后有没有彩蛋 时间比较急 看完就走了 不知道后面有没有彩蛋 求哪位大神告诉一下谢谢 跳吗? 怂包
+                                </p>
+                            </div>
+                        </li>
+                        <!-- 6 -->
+                        <li>
+                            <div class="content_L5_2_1">
+                                <img src="/Content/BodyImgs/duye_reping_6.jpg" alt="">
+                                <i class="v2"></i>
+                            </div>
+                            <div class="content_L5_2_2">
+                                <div class="content_L5_2_2_1">
+                                    <span class="content_L5_2_2_11">这爱有何不可</span>
+                                    <span class="content_L5_2_2_12">购</span>
+                                </div>
+                                <div class="content_L5_2_2_2">
+                                    <div>
+                                        <span>11-09</span>
+                                        <i class="xin5"></i>
+                                    </div>
+                                    <div>
+                                        <a href="./login.html" target="blank"></a>
+                                        <span>1443</span>
+                                    </div>
+                                </div>
+                                <p>强烈推荐[强]，漫威第一部反派为主的电影，有笑点，有泪点，有刺激，有炫酷，有励志，不愧是“致命守护者”。人家两人看的是情怀，我一人看的是人生。</p>
+                            </div>
+                        </li>
+                        <!-- 7 -->
+                        <li>
+                            <div class="content_L5_2_1">
+                                <img src="/Content/BodyImgs/duye_reping_7.jpg" alt="">
+                                <i class="v5"></i>
+                            </div>
+                            <div class="content_L5_2_2">
+                                <div class="content_L5_2_2_1">
+                                    <span class="content_L5_2_2_11">JuliaFanl</span>
+                                    <i></i>
+                                    <span class="content_L5_2_2_12">购</span>
+                                </div>
+                                <div class="content_L5_2_2_2">
+                                    <div>
+                                        <span>11-11</span>
+                                        <i class="xin5"></i>
+                                    </div>
+                                    <div>
+                                        <a href="./login.html" target="blank"></a>
+                                        <span>582</span>
+                                    </div>
+                                </div>
+                                <p>感觉毒液总是微笑的，有个性，很喜欢。埃迪+毒液，两个loser蜕变成一个winner，特别刺激，尤其是肚子饿那会儿。画面后半部分感官性强，也搞笑，前半部分没有立刻揭秘，节奏有点慢，片尾曲(英文)好听，开始期待第二部了，也期待埃迪与屠杀的打斗。</p>
+                            </div>
+                        </li>
+                        <!-- 8 -->
+                        <li>
+                            <div class="content_L5_2_1">
+                                <img src="/Content/BodyImgs/duye_reping_8.jpg" alt="">
+                                <i class="v4"></i>
+                            </div>
+                            <div class="content_L5_2_2">
+                                <div class="content_L5_2_2_1">
+                                    <span class="content_L5_2_2_11">Misterlonely</span>
+                                    <span class="content_L5_2_2_12">购</span>
+                                </div>
+                                <div class="content_L5_2_2_2">
+                                    <div>
+                                        <span>11-09</span>
+                                        <i class="xin5"></i>
+                                    </div>
+                                    <div>
+                                        <a href="./login.html" target="blank"></a>
+                                        <span>1526</span>
+                                    </div>
+                                </div>
+                                <p>
+                                    大眼睛的生物都自带萌的属性，奶凶奶凶的😂
+                                </p>
+                            </div>
+                        </li>
+                        <!-- 9 -->
+                        <li>
+                            <div class="content_L5_2_1">
+                                <img src="/Content/BodyImgs/duye_reping_9.jpg" alt="">
+                                <i class="v3"></i>
+                            </div>
+                            <div class="content_L5_2_2">
+                                <div class="content_L5_2_2_1">
+                                    <span class="content_L5_2_2_11">生活樂趣</span>
+                                    <span class="content_L5_2_2_12">购</span>
+                                </div>
+                                <div class="content_L5_2_2_2">
+                                    <div>
+                                        <span>11-09</span>
+                                        <i class="xin3"></i>
+                                    </div>
+                                    <div>
+                                        <a href="./login.html" target="blank"></a>
+                                        <span>1052</span>
+                                    </div>
+                                </div>
+                                <p>非常奈斯，喜欢毒液突如其来的骚</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+        <aside>
+            <div class="content_R2">
+                <div class="content_R2_1">
+                    <h3>新影上映</h3>
+                </div>
+                <dl>
+                   @foreach (var item in ViewBag.newmovie)
+                   {
+                        <dd>
+                            <a href="/Index/MovieDetail?id=@item.movieid">
+                                <div>
+                                    <img src="@item.pic" alt="" style="height:145px;width:106px">
+                                </div>
+                                <div style="margin-left:-15px">
+                                    @item.moviename
+                                    <p>暂无评分</p>
+                                </div>
+                            </a>
+                        </dd>
+                    }
+
+
+                    <!-- 1 -->
+
+                </dl>
+            </div>
+            <div class="content_R2" style="position:static ;">
+                <div class="content_R2_1">
+                    <h3>谁在关注这部电影</h3>
+                </div>
+                <ul style="margin-top:20px ;">
+                    <li style="border-bottom: 1px dashed #DDD; line-height:1.5;height: 60px; margin-top: 10px;">
+                        <a style="display:block ; float:left" href="">
+                            <img src="/Content/BodyImgs/u164427026-3.jpg" alt="">
+                        </a>
+                        <div style="padding-left:15px ; display:inline-block">
+                            <a style="font-size:0.8em ; color: rgb(75, 141, 210);" href="">所得到的</a>
+                            <div style="font-size:0.8em ;">刚刚 想看</div>
+                        </div>
+                    </li>
+                    <li style="border-bottom: 1px dashed #DDD; line-height:1.5;height: 60px; margin-top: 10px">
+                        <a style="display:block ; float:left" href="">
+                            <img src="/Content/BodyImgs/u164427026-3.jpg" alt="">
+                        </a>
+                        <div style="padding-left:15px ; display:inline-block">
+                            <a style="font-size:0.8em ; color: rgb(75, 141, 210);" href="">所得到的</a>
+                            <div style="font-size:0.8em ;">刚刚 想看</div>
+                        </div>
+                    </li>
+                    <li style="border-bottom: 1px dashed #DDD; line-height:1.5;height: 60px; margin-top: 10px">
+                        <a style="display:block ; float:left" href="">
+                            <img src="/Content/BodyImgs/u164427026-3.jpg" alt="">
+                        </a>
+                        <div style="padding-left:15px ; display:inline-block">
+                            <a style="font-size:0.8em ; color: rgb(75, 141, 210);" href="">所得到的</a>
+                            <div style="font-size:0.8em ;">刚刚 想看</div>
+                        </div>
+                    </li>
+                </ul>
+                <!-- <dl>
+            <dd>
+                <div>
+                    <a href="#">
+                        <img src="/Content/BodyImgs/duye_dianying_1.jpg" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="#" title="X战警：新变种人">
+                        X战警：新变种...
+                    </a>
+                    <p>暂无评分</p>
+                </div>
+            </dd>
+            <dd>
+                <div>
+                    <a href="#">
+                        <img src="/Content/BodyImgs/duye_dianying_2.jpg" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="#" title="蜘蛛侠：英雄远征">
+                        蜘蛛侠：英雄...
+                    </a>
+                    <p>暂无评分</p>
+                </div>
+            </dd>
+            <dd>
+                <div>
+                    <a href="#">
+                        <img src="/Content/BodyImgs/duye_dianying_3.jpg" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="#" title="银河护卫队3">
+                        银河护卫队3
+                    </a>
+                    <p>暂无评分</p>
+                </div>
+            </dd>
+            <dd>
+                <div>
+                    <a href="#">
+                        <img src="/Content/BodyImgs/duye_dianying_4.jpg" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="#" title="X战警：黑凤凰">
+                        X战警：黑凤凰
+                    </a>
+                    <p>暂无评分</p>
+                </div>
+            </dd>
+            <dd>
+                <div>
+                    <a href="#">
+                        <img src="/Content/BodyImgs/duye_dianying_5.jpg" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="#" title="黑寡妇">
+                        黑寡妇
+                    </a>
+                    <p>暂无评分</p>
+                </div>
+            </dd>
+            <dd>
+                <div>
+                    <a href="#">
+                        <img src="/Content/BodyImgs/duye_dianying_6.jpg" alt="">
+                    </a>
+                </div>
+                <div>
+                    <a href="#" title="钢骨">
+                        钢骨
+                    </a>
+                    <p>暂无评分</p>
+                </div>
+            </dd>
+        </dl> -->
+            </div>
+        </aside>
+    </div>
+
+    <!-- 底部 -->
+    <footer>
+        <p>
+            商务合作邮箱：v@maoyan.com 客服电话：10105335 违法和不良信息举报电话：4006018900
+        </p>
+        <p>
+            投诉举报邮箱：tousujubao@meituan.com 舞弊线索举报邮箱：wubijubao@maoyan.com
+        </p>
+        <p>
+            友情链接 :
+            <a href="#">美团网</a>
+            <span></span>
+            <a href="#">美团下载</a>
+            <span></span>
+            <a href="#">欢喜首映</a>
+        </p>
+        <p>
+            ©2016猫眼电影 maoyan.com
+            <a href="#">京ICP证160733号</a>
+            <a href="#">京ICP备16022489号-1</a>
+            <a href="#">京公网安备 11010102003232号</a>
+            <a href="#">网络文化经营许可证</a>
+            <a href="#">电子公告服务规则</a>
+        </p>
+        <p>
+            北京猫眼文化传媒有限公司
+        </p>
+    </footer>
+    <!-- 喵 -->
+    <a class="miao" href="./zajindan.html" target="blank">
+    </a>
+
+
+
+    <script>
+        window.onload = function init() {
+             if (@ViewBag.code== 1) {
+                var info = document.getElementsByClassName("myinfo")
+                for (var i = 0; i < info.length; i++) {
+                    info[i].style.display = "none"
+                }
+
+            }
+            else {
+                var ent = document.getElementById("enter")
+                ent.style.display="none"
+            }
+
+        }
+        function select() {
+            console.log("Sss")
+            var text = document.getElementById("text").value
+            var a = document.createElement("a")
+            a.href = "/Index/selectmovie?moviename=" + text
+            a.click();
+        }
+        function WantSee() {
+            $.ajax({
+                type: "post",
+                url: "/Index/WantSee/",　　　　//请求链接格式：页面文件/请求的操作(页面的带有WebMethod前缀的静态函数)
+                data: JSON.stringify　　　　　　　  //传递的参数使用JSON.stringify转译为JSON格式
+                    ({
+                        "id":"@Model.movieid"
+                        /*"code": $("#UserName").val(),*/
+                        //传递给后台的参数格式："参数名":值。参数名与参数个数一定要与后台函数的参数名及参数个数完全一致
+                    }),
+                contentType: "application/json",
+                dataType: "html",
+                success: function (data) {
+                    document.getElementById("want").innerHTML=data
+                },
+                error: function (err) {
+                   
+                }
+            })
+        }
+    </script>
+
+   
+</body>
+</html>

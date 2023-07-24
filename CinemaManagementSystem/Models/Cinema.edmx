@@ -1,0 +1,1109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CinemaManageSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Aid" />
+          </Key>
+          <Property Name="Aid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Auser" Type="int" Nullable="false" />
+          <Property Name="Apwd" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="areas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="area" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“CinemaManageSystem.dbo.characters”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="characters">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pic" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="CityInfo">
+          <Key>
+            <PropertyRef Name="Hid" />
+          </Key>
+          <Property Name="Hid" Type="int" Nullable="false" />
+          <Property Name="Hplace" Type="varchar(max)" Nullable="false" />
+          <Property Name="Hname" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="FilmInfor">
+          <Key>
+            <PropertyRef Name="Fno" />
+          </Key>
+          <Property Name="Fno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fname" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="FStart" Type="datetime" Nullable="false" />
+          <Property Name="Fend" Type="datetime" Nullable="false" />
+          <Property Name="FOrder" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FilmOnInfor">
+          <Key>
+            <PropertyRef Name="Fshow" />
+          </Key>
+          <Property Name="Fshow" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fno" Type="int" />
+          <Property Name="Hname" Type="varchar" MaxLength="20" />
+          <Property Name="Fdate" Type="datetime2" Precision="7" />
+          <Property Name="Fprice" Type="float" />
+          <Property Name="Remainnum" Type="int" />
+        </EntityType>
+        <EntityType Name="HallInfo">
+          <Key>
+            <PropertyRef Name="theaterid" />
+          </Key>
+          <Property Name="theaterid" Type="int" Nullable="false" />
+          <Property Name="theatername" Type="varchar(max)" Nullable="false" />
+          <Property Name="cityid" Type="int" Nullable="false" />
+          <Property Name="tel" Type="varchar(max)" />
+          <Property Name="address" Type="varchar(max)" />
+          <Property Name="hours" Type="varchar(max)" />
+          <Property Name="seatnum" Type="varchar(max)" />
+          <Property Name="roomnum" Type="varchar(max)" />
+          <Property Name="logo" Type="varchar(max)" />
+          <Property Name="score" Type="varchar(max)" />
+          <Property Name="summary" Type="varchar(max)" />
+          <Property Name="lat" Type="varchar(max)" />
+          <Property Name="lng" Type="varchar(max)" />
+          <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberInfor">
+          <Key>
+            <PropertyRef Name="Mno" />
+          </Key>
+          <Property Name="Mno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Mname" Type="varchar" MaxLength="20" />
+          <Property Name="Mpassword" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mphone" Type="varchar" MaxLength="20" />
+          <Property Name="Memail" Type="varchar" MaxLength="50" />
+          <Property Name="Mlevel" Type="varchar" MaxLength="20" />
+          <Property Name="SendMailTIme" Type="datetime" />
+          <Property Name="MailActive" Type="int" />
+          <Property Name="img" Type="nvarchar(max)" />
+          <Property Name="money" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="createtime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MovieInfo">
+          <Key>
+            <PropertyRef Name="movieid" />
+          </Key>
+          <Property Name="moviename" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="movieid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="enname" Type="varchar" MaxLength="300" />
+          <Property Name="pic" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="typeclass" Type="varchar" MaxLength="300" />
+          <Property Name="years" Type="int" />
+          <Property Name="releasedate" Type="date" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="300" />
+          <Property Name="director" Type="varchar" MaxLength="300" />
+          <Property Name="actor" Type="varchar(max)" />
+          <Property Name="summary" Type="varchar(max)" />
+          <Property Name="screentype" Type="varchar" MaxLength="300" />
+          <Property Name="duration" Type="varchar" MaxLength="300" />
+          <Property Name="language" Type="varchar" MaxLength="50" />
+          <Property Name="OnSale" Type="int" />
+          <Property Name="WantSee" Type="int" />
+          <Property Name="other" Type="int" />
+          <Property Name="Ticket" Type="decimal" Precision="18" Scale="1" />
+          <Property Name="Marknum" Type="int" />
+          <Property Name="score" Type="int" />
+        </EntityType>
+        <EntityType Name="MovieType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="Orderid" />
+          </Key>
+          <Property Name="Orderid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Userid" Type="int" Nullable="false" />
+          <Property Name="moviename" Type="varchar(max)" Nullable="false" />
+          <Property Name="time" Type="varchar(max)" Nullable="false" />
+          <Property Name="cinema" Type="varchar(max)" Nullable="false" />
+          <Property Name="Seat" Type="varchar(max)" Nullable="false" />
+          <Property Name="address" Type="varchar(max)" Nullable="false" />
+          <Property Name="tel" Type="varchar(max)" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="state" Type="int" Nullable="false" />
+          <Property Name="pic" Type="varchar(max)" Nullable="false" />
+          <Property Name="year" Type="datetime" Nullable="false" />
+          <Property Name="creattime" Type="datetime" Nullable="false" />
+          <Property Name="PayState" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refund">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="uid" Type="int" Nullable="false" />
+          <Property Name="moviename" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="time" Type="varchar(max)" Nullable="false" />
+          <Property Name="cinema" Type="varchar(max)" Nullable="false" />
+          <Property Name="seat" Type="varchar(max)" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="State" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SeatInfor">
+          <Key>
+            <PropertyRef Name="SeatID" />
+          </Key>
+          <Property Name="SeatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fshow" Type="int" />
+          <Property Name="Sno" Type="int" />
+          <Property Name="Sstate" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Tno" />
+          </Key>
+          <Property Name="Tno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fshow" Type="int" />
+          <Property Name="SeatID" Type="int" />
+          <Property Name="Mno" Type="int" />
+          <Property Name="Ttype" Type="varchar" MaxLength="20" />
+          <Property Name="Tprice" Type="float" />
+        </EntityType>
+        <EntityType Name="TicketAffairs">
+          <Key>
+            <PropertyRef Name="Recordno" />
+          </Key>
+          <Property Name="Recordno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tno" Type="int" />
+          <Property Name="Recordtype" Type="varchar" MaxLength="20" />
+          <Property Name="Recordtime" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="WantSee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="MovieId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“CinemaManageSystem.dbo.Years”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="Years">
+          <Key>
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="time" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__FilmOnInfor__Fno__3A81B327">
+          <End Role="FilmInfor" Type="Self.FilmInfor" Multiplicity="0..1" />
+          <End Role="FilmOnInfor" Type="Self.FilmOnInfor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FilmInfor">
+              <PropertyRef Name="Fno" />
+            </Principal>
+            <Dependent Role="FilmOnInfor">
+              <PropertyRef Name="Fno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SeatInfor__Fshow__3E52440B">
+          <End Role="FilmOnInfor" Type="Self.FilmOnInfor" Multiplicity="0..1" />
+          <End Role="SeatInfor" Type="Self.SeatInfor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FilmOnInfor">
+              <PropertyRef Name="Fshow" />
+            </Principal>
+            <Dependent Role="SeatInfor">
+              <PropertyRef Name="Fshow" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Fshow__47DBAE45">
+          <End Role="FilmOnInfor" Type="Self.FilmOnInfor" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FilmOnInfor">
+              <PropertyRef Name="Fshow" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Fshow" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Mno__49C3F6B7">
+          <End Role="MemberInfor" Type="Self.MemberInfor" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberInfor">
+              <PropertyRef Name="Mno" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Mno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__SeatID__48CFD27E">
+          <End Role="SeatInfor" Type="Self.SeatInfor" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeatInfor">
+              <PropertyRef Name="SeatID" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="SeatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TicketAffai__Tno__4D94879B">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="0..1" />
+          <End Role="TicketAffairs" Type="Self.TicketAffairs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="Tno" />
+            </Principal>
+            <Dependent Role="TicketAffairs">
+              <PropertyRef Name="Tno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HallInfo_CityInfo">
+          <End Role="CityInfo" Type="Self.CityInfo" Multiplicity="1" />
+          <End Role="HallInfo" Type="Self.HallInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityInfo">
+              <PropertyRef Name="Hid" />
+            </Principal>
+            <Dependent Role="HallInfo">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberInfor_MemberInfor">
+          <End Role="MemberInfor" Type="Self.MemberInfor" Multiplicity="1" />
+          <End Role="MemberInfor1" Type="Self.MemberInfor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MemberInfor">
+              <PropertyRef Name="Mno" />
+            </Principal>
+            <Dependent Role="MemberInfor1">
+              <PropertyRef Name="Mno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_MemberInfor">
+          <End Role="MemberInfor" Type="Self.MemberInfor" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberInfor">
+              <PropertyRef Name="Mno" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_refund_MemberInfor">
+          <End Role="MemberInfor" Type="Self.MemberInfor" Multiplicity="1" />
+          <End Role="refund" Type="Self.refund" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberInfor">
+              <PropertyRef Name="Mno" />
+            </Principal>
+            <Dependent Role="refund">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WantSee_MemberInfor">
+          <End Role="MemberInfor" Type="Self.MemberInfor" Multiplicity="1" />
+          <End Role="WantSee" Type="Self.WantSee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberInfor">
+              <PropertyRef Name="Mno" />
+            </Principal>
+            <Dependent Role="WantSee">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WantSee_MovieInfo">
+          <End Role="MovieInfo" Type="Self.MovieInfo" Multiplicity="1" />
+          <End Role="WantSee" Type="Self.WantSee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovieInfo">
+              <PropertyRef Name="movieid" />
+            </Principal>
+            <Dependent Role="WantSee">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CinemaManageSystemModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="areas" EntityType="Self.areas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CityInfo" EntityType="Self.CityInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FilmInfor" EntityType="Self.FilmInfor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FilmOnInfor" EntityType="Self.FilmOnInfor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HallInfo" EntityType="Self.HallInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberInfor" EntityType="Self.MemberInfor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovieInfo" EntityType="Self.MovieInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovieType" EntityType="Self.MovieType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDetail" EntityType="Self.OrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="refund" EntityType="Self.refund" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SeatInfor" EntityType="Self.SeatInfor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketAffairs" EntityType="Self.TicketAffairs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WantSee" EntityType="Self.WantSee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="characters" EntityType="Self.characters" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [characters].[Id] AS [Id], 
+    [characters].[name] AS [name], 
+    [characters].[pic] AS [pic]
+    FROM [dbo].[characters] AS [characters]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Years" EntityType="Self.Years" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Years].[time] AS [time], 
+    [Years].[id] AS [id]
+    FROM [dbo].[Years] AS [Years]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__FilmOnInfor__Fno__3A81B327" Association="Self.FK__FilmOnInfor__Fno__3A81B327">
+            <End Role="FilmInfor" EntitySet="FilmInfor" />
+            <End Role="FilmOnInfor" EntitySet="FilmOnInfor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SeatInfor__Fshow__3E52440B" Association="Self.FK__SeatInfor__Fshow__3E52440B">
+            <End Role="FilmOnInfor" EntitySet="FilmOnInfor" />
+            <End Role="SeatInfor" EntitySet="SeatInfor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Fshow__47DBAE45" Association="Self.FK__Ticket__Fshow__47DBAE45">
+            <End Role="FilmOnInfor" EntitySet="FilmOnInfor" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Mno__49C3F6B7" Association="Self.FK__Ticket__Mno__49C3F6B7">
+            <End Role="MemberInfor" EntitySet="MemberInfor" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__SeatID__48CFD27E" Association="Self.FK__Ticket__SeatID__48CFD27E">
+            <End Role="SeatInfor" EntitySet="SeatInfor" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TicketAffai__Tno__4D94879B" Association="Self.FK__TicketAffai__Tno__4D94879B">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="TicketAffairs" EntitySet="TicketAffairs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HallInfo_CityInfo" Association="Self.FK_HallInfo_CityInfo">
+            <End Role="CityInfo" EntitySet="CityInfo" />
+            <End Role="HallInfo" EntitySet="HallInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberInfor_MemberInfor" Association="Self.FK_MemberInfor_MemberInfor">
+            <End Role="MemberInfor" EntitySet="MemberInfor" />
+            <End Role="MemberInfor1" EntitySet="MemberInfor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_MemberInfor" Association="Self.FK_OrderDetail_MemberInfor">
+            <End Role="MemberInfor" EntitySet="MemberInfor" />
+            <End Role="OrderDetail" EntitySet="OrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_refund_MemberInfor" Association="Self.FK_refund_MemberInfor">
+            <End Role="MemberInfor" EntitySet="MemberInfor" />
+            <End Role="refund" EntitySet="refund" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WantSee_MemberInfor" Association="Self.FK_WantSee_MemberInfor">
+            <End Role="MemberInfor" EntitySet="MemberInfor" />
+            <End Role="WantSee" EntitySet="WantSee" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WantSee_MovieInfo" Association="Self.FK_WantSee_MovieInfo">
+            <End Role="MovieInfo" EntitySet="MovieInfo" />
+            <End Role="WantSee" EntitySet="WantSee" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CinemaManageSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Aid" />
+          </Key>
+          <Property Name="Aid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Auser" Type="Int32" Nullable="false" />
+          <Property Name="Apwd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="area">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="area1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="CityInfo">
+          <Key>
+            <PropertyRef Name="Hid" />
+          </Key>
+          <Property Name="Hid" Type="Int32" Nullable="false" />
+          <Property Name="Hplace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Hname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HallInfoes" Relationship="Self.FK_HallInfo_CityInfo" FromRole="CityInfo" ToRole="HallInfo" />
+        </EntityType>
+        <EntityType Name="FilmInfor">
+          <Key>
+            <PropertyRef Name="Fno" />
+          </Key>
+          <Property Name="Fno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fname" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fend" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FOrder" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FilmOnInfors" Relationship="Self.FK__FilmOnInfor__Fno__3A81B327" FromRole="FilmInfor" ToRole="FilmOnInfor" />
+        </EntityType>
+        <EntityType Name="FilmOnInfor">
+          <Key>
+            <PropertyRef Name="Fshow" />
+          </Key>
+          <Property Name="Fshow" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fno" Type="Int32" />
+          <Property Name="Hname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Fdate" Type="DateTime" Precision="7" />
+          <Property Name="Fprice" Type="Double" />
+          <Property Name="Remainnum" Type="Int32" />
+          <NavigationProperty Name="FilmInfor" Relationship="Self.FK__FilmOnInfor__Fno__3A81B327" FromRole="FilmOnInfor" ToRole="FilmInfor" />
+          <NavigationProperty Name="SeatInfors" Relationship="Self.FK__SeatInfor__Fshow__3E52440B" FromRole="FilmOnInfor" ToRole="SeatInfor" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__Fshow__47DBAE45" FromRole="FilmOnInfor" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="HallInfo">
+          <Key>
+            <PropertyRef Name="theaterid" />
+          </Key>
+          <Property Name="theaterid" Type="Int32" Nullable="false" />
+          <Property Name="theatername" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cityid" Type="Int32" Nullable="false" />
+          <Property Name="tel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="hours" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="seatnum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="roomnum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="score" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="lat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="lng" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="CityInfo" Relationship="Self.FK_HallInfo_CityInfo" FromRole="HallInfo" ToRole="CityInfo" />
+        </EntityType>
+        <EntityType Name="MemberInfor">
+          <Key>
+            <PropertyRef Name="Mno" />
+          </Key>
+          <Property Name="Mno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Mname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Mpassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mphone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Memail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Mlevel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="SendMailTIme" Type="DateTime" Precision="3" />
+          <Property Name="MailActive" Type="Int32" />
+          <Property Name="img" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="money" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="createtime" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__Mno__49C3F6B7" FromRole="MemberInfor" ToRole="Ticket" />
+          <NavigationProperty Name="MemberInfor1" Relationship="Self.FK_MemberInfor_MemberInfor" FromRole="MemberInfor" ToRole="MemberInfor1" />
+          <NavigationProperty Name="MemberInfor2" Relationship="Self.FK_MemberInfor_MemberInfor" FromRole="MemberInfor1" ToRole="MemberInfor" />
+          <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_MemberInfor" FromRole="MemberInfor" ToRole="OrderDetail" />
+          <NavigationProperty Name="refunds" Relationship="Self.FK_refund_MemberInfor" FromRole="MemberInfor" ToRole="refund" />
+          <NavigationProperty Name="WantSees" Relationship="Self.FK_WantSee_MemberInfor" FromRole="MemberInfor" ToRole="WantSee" />
+        </EntityType>
+        <EntityType Name="MovieInfo">
+          <Key>
+            <PropertyRef Name="movieid" />
+          </Key>
+          <Property Name="moviename" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="movieid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="enname" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="pic" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="typeclass" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="years" Type="Int32" />
+          <Property Name="releasedate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="country" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="director" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="actor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="screentype" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="duration" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="language" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OnSale" Type="Int32" />
+          <Property Name="WantSee" Type="Int32" />
+          <Property Name="other" Type="Int32" />
+          <Property Name="Ticket" Type="Decimal" Precision="18" Scale="1" />
+          <Property Name="Marknum" Type="Int32" />
+          <Property Name="score" Type="Int32" />
+          <NavigationProperty Name="WantSees" Relationship="Self.FK_WantSee_MovieInfo" FromRole="MovieInfo" ToRole="WantSee" />
+        </EntityType>
+        <EntityType Name="MovieType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="OrderDetail">
+          <Key>
+            <PropertyRef Name="Orderid" />
+          </Key>
+          <Property Name="Orderid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Userid" Type="Int32" Nullable="false" />
+          <Property Name="moviename" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="time" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cinema" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Seat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="state" Type="Int32" Nullable="false" />
+          <Property Name="pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="year" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="creattime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PayState" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MemberInfor" Relationship="Self.FK_OrderDetail_MemberInfor" FromRole="OrderDetail" ToRole="MemberInfor" />
+        </EntityType>
+        <EntityType Name="refund">
+          <Key>
+            <PropertyRef Name="orderid" />
+          </Key>
+          <Property Name="orderid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="uid" Type="Int32" Nullable="false" />
+          <Property Name="moviename" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="time" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cinema" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="seat" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
+          <Property Name="State" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MemberInfor" Relationship="Self.FK_refund_MemberInfor" FromRole="refund" ToRole="MemberInfor" />
+        </EntityType>
+        <EntityType Name="SeatInfor">
+          <Key>
+            <PropertyRef Name="SeatID" />
+          </Key>
+          <Property Name="SeatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fshow" Type="Int32" />
+          <Property Name="Sno" Type="Int32" />
+          <Property Name="Sstate" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FilmOnInfor" Relationship="Self.FK__SeatInfor__Fshow__3E52440B" FromRole="SeatInfor" ToRole="FilmOnInfor" />
+          <NavigationProperty Name="Tickets" Relationship="Self.FK__Ticket__SeatID__48CFD27E" FromRole="SeatInfor" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Tno" />
+          </Key>
+          <Property Name="Tno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fshow" Type="Int32" />
+          <Property Name="SeatID" Type="Int32" />
+          <Property Name="Mno" Type="Int32" />
+          <Property Name="Ttype" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Tprice" Type="Double" />
+          <NavigationProperty Name="FilmOnInfor" Relationship="Self.FK__Ticket__Fshow__47DBAE45" FromRole="Ticket" ToRole="FilmOnInfor" />
+          <NavigationProperty Name="MemberInfor" Relationship="Self.FK__Ticket__Mno__49C3F6B7" FromRole="Ticket" ToRole="MemberInfor" />
+          <NavigationProperty Name="SeatInfor" Relationship="Self.FK__Ticket__SeatID__48CFD27E" FromRole="Ticket" ToRole="SeatInfor" />
+          <NavigationProperty Name="TicketAffairs" Relationship="Self.FK__TicketAffai__Tno__4D94879B" FromRole="Ticket" ToRole="TicketAffairs" />
+        </EntityType>
+        <EntityType Name="TicketAffair">
+          <Key>
+            <PropertyRef Name="Recordno" />
+          </Key>
+          <Property Name="Recordno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tno" Type="Int32" />
+          <Property Name="Recordtype" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Recordtime" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK__TicketAffai__Tno__4D94879B" FromRole="TicketAffairs" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="WantSee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="MovieId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MemberInfor" Relationship="Self.FK_WantSee_MemberInfor" FromRole="WantSee" ToRole="MemberInfor" />
+          <NavigationProperty Name="MovieInfo" Relationship="Self.FK_WantSee_MovieInfo" FromRole="WantSee" ToRole="MovieInfo" />
+        </EntityType>
+        <EntityType Name="character">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="name" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Year">
+          <Key>
+            <PropertyRef Name="time" />
+          </Key>
+          <Property Name="time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_HallInfo_CityInfo">
+          <End Role="CityInfo" Type="Self.CityInfo" Multiplicity="1" />
+          <End Role="HallInfo" Type="Self.HallInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CityInfo">
+              <PropertyRef Name="Hid" />
+            </Principal>
+            <Dependent Role="HallInfo">
+              <PropertyRef Name="cityid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__FilmOnInfor__Fno__3A81B327">
+          <End Role="FilmInfor" Type="Self.FilmInfor" Multiplicity="0..1" />
+          <End Role="FilmOnInfor" Type="Self.FilmOnInfor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FilmInfor">
+              <PropertyRef Name="Fno" />
+            </Principal>
+            <Dependent Role="FilmOnInfor">
+              <PropertyRef Name="Fno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SeatInfor__Fshow__3E52440B">
+          <End Role="FilmOnInfor" Type="Self.FilmOnInfor" Multiplicity="0..1" />
+          <End Role="SeatInfor" Type="Self.SeatInfor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FilmOnInfor">
+              <PropertyRef Name="Fshow" />
+            </Principal>
+            <Dependent Role="SeatInfor">
+              <PropertyRef Name="Fshow" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Fshow__47DBAE45">
+          <End Role="FilmOnInfor" Type="Self.FilmOnInfor" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FilmOnInfor">
+              <PropertyRef Name="Fshow" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Fshow" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__Mno__49C3F6B7">
+          <End Role="MemberInfor" Type="Self.MemberInfor" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberInfor">
+              <PropertyRef Name="Mno" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="Mno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MemberInfor_MemberInfor">
+          <End Role="MemberInfor" Type="Self.MemberInfor" Multiplicity="1" />
+          <End Role="MemberInfor1" Type="Self.MemberInfor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="MemberInfor">
+              <PropertyRef Name="Mno" />
+            </Principal>
+            <Dependent Role="MemberInfor1">
+              <PropertyRef Name="Mno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDetail_MemberInfor">
+          <End Role="MemberInfor" Type="Self.MemberInfor" Multiplicity="1" />
+          <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberInfor">
+              <PropertyRef Name="Mno" />
+            </Principal>
+            <Dependent Role="OrderDetail">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_refund_MemberInfor">
+          <End Role="MemberInfor" Type="Self.MemberInfor" Multiplicity="1" />
+          <End Role="refund" Type="Self.refund" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberInfor">
+              <PropertyRef Name="Mno" />
+            </Principal>
+            <Dependent Role="refund">
+              <PropertyRef Name="uid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WantSee_MemberInfor">
+          <End Role="MemberInfor" Type="Self.MemberInfor" Multiplicity="1" />
+          <End Role="WantSee" Type="Self.WantSee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberInfor">
+              <PropertyRef Name="Mno" />
+            </Principal>
+            <Dependent Role="WantSee">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WantSee_MovieInfo">
+          <End Role="MovieInfo" Type="Self.MovieInfo" Multiplicity="1" />
+          <End Role="WantSee" Type="Self.WantSee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MovieInfo">
+              <PropertyRef Name="movieid" />
+            </Principal>
+            <Dependent Role="WantSee">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ticket__SeatID__48CFD27E">
+          <End Role="SeatInfor" Type="Self.SeatInfor" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SeatInfor">
+              <PropertyRef Name="SeatID" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="SeatID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TicketAffai__Tno__4D94879B">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="0..1" />
+          <End Role="TicketAffairs" Type="Self.TicketAffair" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="Tno" />
+            </Principal>
+            <Dependent Role="TicketAffairs">
+              <PropertyRef Name="Tno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CinemaManageSystemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
+          <EntitySet Name="areas" EntityType="Self.area" />
+          <EntitySet Name="CityInfoes" EntityType="Self.CityInfo" />
+          <EntitySet Name="FilmInfors" EntityType="Self.FilmInfor" />
+          <EntitySet Name="FilmOnInfors" EntityType="Self.FilmOnInfor" />
+          <EntitySet Name="HallInfoes" EntityType="Self.HallInfo" />
+          <EntitySet Name="MemberInfors" EntityType="Self.MemberInfor" />
+          <EntitySet Name="MovieInfoes" EntityType="Self.MovieInfo" />
+          <EntitySet Name="MovieTypes" EntityType="Self.MovieType" />
+          <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+          <EntitySet Name="refunds" EntityType="Self.refund" />
+          <EntitySet Name="SeatInfors" EntityType="Self.SeatInfor" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <EntitySet Name="TicketAffairs" EntityType="Self.TicketAffair" />
+          <EntitySet Name="WantSees" EntityType="Self.WantSee" />
+          <EntitySet Name="characters" EntityType="Self.character" />
+          <EntitySet Name="Years" EntityType="Self.Year" />
+          <AssociationSet Name="FK_HallInfo_CityInfo" Association="Self.FK_HallInfo_CityInfo">
+            <End Role="CityInfo" EntitySet="CityInfoes" />
+            <End Role="HallInfo" EntitySet="HallInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__FilmOnInfor__Fno__3A81B327" Association="Self.FK__FilmOnInfor__Fno__3A81B327">
+            <End Role="FilmInfor" EntitySet="FilmInfors" />
+            <End Role="FilmOnInfor" EntitySet="FilmOnInfors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SeatInfor__Fshow__3E52440B" Association="Self.FK__SeatInfor__Fshow__3E52440B">
+            <End Role="FilmOnInfor" EntitySet="FilmOnInfors" />
+            <End Role="SeatInfor" EntitySet="SeatInfors" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Fshow__47DBAE45" Association="Self.FK__Ticket__Fshow__47DBAE45">
+            <End Role="FilmOnInfor" EntitySet="FilmOnInfors" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__Mno__49C3F6B7" Association="Self.FK__Ticket__Mno__49C3F6B7">
+            <End Role="MemberInfor" EntitySet="MemberInfors" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MemberInfor_MemberInfor" Association="Self.FK_MemberInfor_MemberInfor">
+            <End Role="MemberInfor" EntitySet="MemberInfors" />
+            <End Role="MemberInfor1" EntitySet="MemberInfors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDetail_MemberInfor" Association="Self.FK_OrderDetail_MemberInfor">
+            <End Role="MemberInfor" EntitySet="MemberInfors" />
+            <End Role="OrderDetail" EntitySet="OrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_refund_MemberInfor" Association="Self.FK_refund_MemberInfor">
+            <End Role="MemberInfor" EntitySet="MemberInfors" />
+            <End Role="refund" EntitySet="refunds" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WantSee_MemberInfor" Association="Self.FK_WantSee_MemberInfor">
+            <End Role="MemberInfor" EntitySet="MemberInfors" />
+            <End Role="WantSee" EntitySet="WantSees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WantSee_MovieInfo" Association="Self.FK_WantSee_MovieInfo">
+            <End Role="MovieInfo" EntitySet="MovieInfoes" />
+            <End Role="WantSee" EntitySet="WantSees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ticket__SeatID__48CFD27E" Association="Self.FK__Ticket__SeatID__48CFD27E">
+            <End Role="SeatInfor" EntitySet="SeatInfors" />
+            <End Role="Ticket" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TicketAffai__Tno__4D94879B" Association="Self.FK__TicketAffai__Tno__4D94879B">
+            <End Role="Ticket" EntitySet="Tickets" />
+            <End Role="TicketAffairs" EntitySet="TicketAffairs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CinemaManageSystemModelStoreContainer" CdmEntityContainer="CinemaManageSystemEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="Aid" ColumnName="Aid" />
+                <ScalarProperty Name="Auser" ColumnName="Auser" />
+                <ScalarProperty Name="Apwd" ColumnName="Apwd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="areas">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.area">
+              <MappingFragment StoreEntitySet="areas">
+                <ScalarProperty Name="area1" ColumnName="area" />
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CityInfoes">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.CityInfo">
+              <MappingFragment StoreEntitySet="CityInfo">
+                <ScalarProperty Name="Hid" ColumnName="Hid" />
+                <ScalarProperty Name="Hplace" ColumnName="Hplace" />
+                <ScalarProperty Name="Hname" ColumnName="Hname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FilmInfors">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.FilmInfor">
+              <MappingFragment StoreEntitySet="FilmInfor">
+                <ScalarProperty Name="Fno" ColumnName="Fno" />
+                <ScalarProperty Name="Fname" ColumnName="Fname" />
+                <ScalarProperty Name="FStart" ColumnName="FStart" />
+                <ScalarProperty Name="Fend" ColumnName="Fend" />
+                <ScalarProperty Name="FOrder" ColumnName="FOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FilmOnInfors">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.FilmOnInfor">
+              <MappingFragment StoreEntitySet="FilmOnInfor">
+                <ScalarProperty Name="Fshow" ColumnName="Fshow" />
+                <ScalarProperty Name="Fno" ColumnName="Fno" />
+                <ScalarProperty Name="Hname" ColumnName="Hname" />
+                <ScalarProperty Name="Fdate" ColumnName="Fdate" />
+                <ScalarProperty Name="Fprice" ColumnName="Fprice" />
+                <ScalarProperty Name="Remainnum" ColumnName="Remainnum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HallInfoes">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.HallInfo">
+              <MappingFragment StoreEntitySet="HallInfo">
+                <ScalarProperty Name="theaterid" ColumnName="theaterid" />
+                <ScalarProperty Name="theatername" ColumnName="theatername" />
+                <ScalarProperty Name="cityid" ColumnName="cityid" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="hours" ColumnName="hours" />
+                <ScalarProperty Name="seatnum" ColumnName="seatnum" />
+                <ScalarProperty Name="roomnum" ColumnName="roomnum" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="score" ColumnName="score" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="lat" ColumnName="lat" />
+                <ScalarProperty Name="lng" ColumnName="lng" />
+                <ScalarProperty Name="city" ColumnName="city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberInfors">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.MemberInfor">
+              <MappingFragment StoreEntitySet="MemberInfor">
+                <ScalarProperty Name="Mno" ColumnName="Mno" />
+                <ScalarProperty Name="Mname" ColumnName="Mname" />
+                <ScalarProperty Name="Mpassword" ColumnName="Mpassword" />
+                <ScalarProperty Name="Mphone" ColumnName="Mphone" />
+                <ScalarProperty Name="Memail" ColumnName="Memail" />
+                <ScalarProperty Name="Mlevel" ColumnName="Mlevel" />
+                <ScalarProperty Name="SendMailTIme" ColumnName="SendMailTIme" />
+                <ScalarProperty Name="MailActive" ColumnName="MailActive" />
+                <ScalarProperty Name="img" ColumnName="img" />
+                <ScalarProperty Name="money" ColumnName="money" />
+                <ScalarProperty Name="createtime" ColumnName="createtime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovieInfoes">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.MovieInfo">
+              <MappingFragment StoreEntitySet="MovieInfo">
+                <ScalarProperty Name="moviename" ColumnName="moviename" />
+                <ScalarProperty Name="movieid" ColumnName="movieid" />
+                <ScalarProperty Name="enname" ColumnName="enname" />
+                <ScalarProperty Name="pic" ColumnName="pic" />
+                <ScalarProperty Name="typeclass" ColumnName="typeclass" />
+                <ScalarProperty Name="years" ColumnName="years" />
+                <ScalarProperty Name="releasedate" ColumnName="releasedate" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="director" ColumnName="director" />
+                <ScalarProperty Name="actor" ColumnName="actor" />
+                <ScalarProperty Name="summary" ColumnName="summary" />
+                <ScalarProperty Name="screentype" ColumnName="screentype" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="language" ColumnName="language" />
+                <ScalarProperty Name="OnSale" ColumnName="OnSale" />
+                <ScalarProperty Name="WantSee" ColumnName="WantSee" />
+                <ScalarProperty Name="other" ColumnName="other" />
+                <ScalarProperty Name="Ticket" ColumnName="Ticket" />
+                <ScalarProperty Name="Marknum" ColumnName="Marknum" />
+                <ScalarProperty Name="score" ColumnName="score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovieTypes">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.MovieType">
+              <MappingFragment StoreEntitySet="MovieType">
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDetails">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.OrderDetail">
+              <MappingFragment StoreEntitySet="OrderDetail">
+                <ScalarProperty Name="Orderid" ColumnName="Orderid" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="moviename" ColumnName="moviename" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="cinema" ColumnName="cinema" />
+                <ScalarProperty Name="Seat" ColumnName="Seat" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="pic" ColumnName="pic" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="creattime" ColumnName="creattime" />
+                <ScalarProperty Name="PayState" ColumnName="PayState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refunds">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.refund">
+              <MappingFragment StoreEntitySet="refund">
+                <ScalarProperty Name="orderid" ColumnName="orderid" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="moviename" ColumnName="moviename" />
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="cinema" ColumnName="cinema" />
+                <ScalarProperty Name="seat" ColumnName="seat" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="State" ColumnName="State" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SeatInfors">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.SeatInfor">
+              <MappingFragment StoreEntitySet="SeatInfor">
+                <ScalarProperty Name="SeatID" ColumnName="SeatID" />
+                <ScalarProperty Name="Fshow" ColumnName="Fshow" />
+                <ScalarProperty Name="Sno" ColumnName="Sno" />
+                <ScalarProperty Name="Sstate" ColumnName="Sstate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="Tno" ColumnName="Tno" />
+                <ScalarProperty Name="Fshow" ColumnName="Fshow" />
+                <ScalarProperty Name="SeatID" ColumnName="SeatID" />
+                <ScalarProperty Name="Mno" ColumnName="Mno" />
+                <ScalarProperty Name="Ttype" ColumnName="Ttype" />
+                <ScalarProperty Name="Tprice" ColumnName="Tprice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketAffairs">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.TicketAffair">
+              <MappingFragment StoreEntitySet="TicketAffairs">
+                <ScalarProperty Name="Recordno" ColumnName="Recordno" />
+                <ScalarProperty Name="Tno" ColumnName="Tno" />
+                <ScalarProperty Name="Recordtype" ColumnName="Recordtype" />
+                <ScalarProperty Name="Recordtime" ColumnName="Recordtime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WantSees">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.WantSee">
+              <MappingFragment StoreEntitySet="WantSee">
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="characters">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.character">
+              <MappingFragment StoreEntitySet="characters">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="pic" ColumnName="pic" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Years">
+            <EntityTypeMapping TypeName="CinemaManageSystemModel.Year">
+              <MappingFragment StoreEntitySet="Years">
+                <ScalarProperty Name="time" ColumnName="time" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

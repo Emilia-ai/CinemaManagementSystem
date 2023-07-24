@@ -1,0 +1,1278 @@
+a {
+    text-decoration: none;
+}
+
+h1,
+h2,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style-type: none;
+}
+
+.dingbu {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    z-index:999;
+    nav {
+        height: 80px;
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        div:hover .sanjiao {
+            transform: rotate(180deg);
+        }
+        .bian {
+            border-left: 1px solid transparent;
+            border-right: 1px solid transparent;
+        }
+        .bian:hover {
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+        }
+        .sanjiao {
+            display: inline-block;
+            width: 0;
+            height: 0;
+            margin-left: 2px;
+            vertical-align: middle;
+            border-top: 5px solid #666;
+            border-right: 5px solid transparent;
+            border-left: 5px solid transparent;
+            -webkit-transition: all .2s ease;
+            transition: all .2s ease;
+            vertical-align: inherit;
+        }
+        .logo {
+            margin-top: 20px;
+            display: inline-block;
+            background-image: url("/Content/BodyImgs/logo_s.png");
+            width: 133px;
+            height: 40px;
+        }
+        .xiala1 {
+            margin: 0 8px;
+            height: 80px;
+            position: relative;
+            .xiala1_1 {
+                width: 50px;
+                padding: 0 10px;
+                .cd {
+                    display: inline-block;
+                    color: #333;
+                    margin-top: 30px;
+                }
+                ul {
+                    position: absolute;
+                    top: 80px;
+                    left: -1px;
+                    width: 480px;
+                    height: 260px;
+                    border: 1px solid #ccc;
+                    border-top: none;
+                    overflow: auto;
+                    display: none;
+                    background-color: #fff;
+                    .xiala1_1_d {
+                        border-bottom: 1px solid #ccc;
+                        padding: 10px 0;
+                        padding-left: 10px;
+                        font-size: 14px;
+                        a {
+                            color: #000;
+                            font-size: 14px;
+                        }
+                    }
+                    li {
+                        display: flex;
+                        justify-content: space-between;
+                        margin: 20px 10px;
+                        span {
+                            display:block;
+                            margin-right: 10px;
+                            width:22px;
+                            height:20px;
+                            background-color: #d8d8d8;
+                            text-align: center;
+                        }
+                        display:flex;
+                        justify-content: space-between;
+                        div{
+                            width:440px;
+                            display:flex;
+                            justify-content:flex-start;
+                            flex-wrap:wrap;
+                        }
+                        a {
+                            display:inline-block;
+                            padding:2px 4px;
+                            color: #000;
+                            border-radius:4px;
+                        }
+                        a:hover {
+                            background-color: #f00;
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .xiala1:hover ul {
+            display: block;
+        }
+        .navbar {
+            width: 400px;
+            display: flex;
+            line-height: 80px;
+            margin-left: 40px;
+            li {
+                width: 80px;
+                height: 80px;
+                text-align: center;
+                a {
+                    font-size: 18px;
+                    color: #333;
+                    padding: 28px 22px;
+                }
+            }
+            li:nth-of-type(1) {
+                background-color: #ef4238;
+                a {
+                    color: #fff;
+                }
+            }
+            li:not(:nth-of-type(1)):hover>a {
+                color: #f00;
+            }
+        }
+        .shouji {
+            width: 100px;
+            height: 81px;
+            text-align: center;
+            position: relative;
+            margin-left: 60px;
+            span {
+                line-height: 80px;
+                color: #333;
+            }
+            .shouji_1 {
+                width: 15px;
+                height: 24px;
+                display: inline-block;
+                background-image: url("/Content/BodyImgs/phone.png");
+                vertical-align: middle;
+            }
+            span:nth-of-type(2) {
+                font-size: 14px;
+            }
+            .shouji1 {
+                height: 160px;
+                text-align: center;
+                position: absolute;
+                top: 80px;
+                display: none;
+                background-color: #fff;
+                div {
+                    width: 100px;
+                    height: 100px;
+                    div {
+                        width: 82px;
+                        height: 82px;
+                        background: url("/Content/BodyImgs/shoujiAPP.png") no-repeat;
+                        margin: 0 auto;
+                        margin-top: 10px;
+                    }
+                }
+                p:nth-of-type(1) {
+                    font-size: 14px;
+                    color: #000;
+                }
+                p:nth-of-type(2) {
+                    font-size: 14px;
+                    color: #999;
+                }
+            }
+        }
+        .shouji:hover .shouji1 {
+            display: block;
+        }
+        .sousuo {
+            width: 260px;
+            line-height: 80px;
+            margin-left: 20px;
+            position: relative;
+            .sousuo_1 {
+                display: inline-block;
+                height: 40px;
+                width: 200px;
+                padding: 0 40px 0 20px;
+                border: 1px solid #ccc;
+                font-size: 14px;
+                border-radius: 30px;
+                background-color: #faf8fa;
+                color: #333;
+                outline: none;
+            }
+            .sousuo_2 {
+                display: inline-block;
+                position: absolute;
+                left: 222px;
+                top: 21px;
+                height: 40px;
+                width: 40px;
+                border-radius: 30px;
+                outline: none;
+                border: none;
+                background: url("/Content/BodyImgs/ding_fangda.png") no-repeat #ef4238 center;
+            }
+        }
+        .denglu {
+            margin-left: 20px;
+            width: 70px;
+            text-align: center;
+            position: relative;
+            a {
+                display: inline-block;
+                img {
+                    margin-top: 20px;
+                    width: 40px;
+                }
+            }
+            span {
+                margin-bottom: 14px;
+            }
+            div {
+                position: absolute;
+                top: 80px;
+                width: 70px;
+                height: 40px;
+                text-align: center;
+                display: none;
+                background-color: #fff;
+                a {
+                    margin-top: 10px;
+                    color: #999;
+                    font-size: 12px;
+                    position: relative;
+                }
+                a:hover {
+                    color: #f00;
+                    transition: all linear 1s;
+                }
+                a::before {
+                    content: "";
+                    width: 0px;
+                    border-bottom: 1px solid transparent;
+                    transition: all linear 1s;
+                    position: absolute;
+                    left: 12px;
+                    bottom: 0;
+                }
+                a:hover::before {
+                    width: 28px;
+                    border-color: #f00;
+                    left: -2px;
+                }
+            }
+        }
+        .denglu:hover div {
+            display: block;
+        }
+    }
+}
+
+//轮播
+.lunbo {
+    width: 1200px;
+    height: 372px;
+    margin: 0 auto;
+    margin-top: 81px;
+    .lunbo1 {
+        /*----------图片轮播相框容器----------*/
+        position: absolute;
+        /*--绝对定位，方便子元素的定位*/
+        width: 1200px;
+        height: 372px;
+        overflow: hidden;
+        /*--相框作用，只显示一个图片---*/
+    }
+    #photos img {
+        float: left;
+        width: 1200px;
+    }
+    #photos {
+        /*---设置总的图片宽度--通过位移来达到轮播效果----*/
+        position: absolute;
+        z-index: 9px;
+        width: calc(1200px * 5);
+        /*---修改图片数量的话需要修改下面的动画参数*/
+    }
+    .lunbo1_lun {
+        animation: ma 20s ease-out infinite alternate;
+        /**/
+    }
+    @keyframes ma {
+        /*---每图片切换有两个阶段：位移切换和静置。中间的效果可以任意定制----*/
+        0%,
+        20% {
+            margin-left: 0px;
+        }
+        25%,
+        40% {
+            margin-left: -1200px;
+        }
+        45%,
+        60% {
+            margin-left: -2400px;
+        }
+        65%,
+        80% {
+            margin-left: -3600px;
+        }
+        85%,
+        100% {
+            margin-left: -4800px;
+        }
+    }
+    .lun {
+        position: absolute;
+        z-index: 10;
+        display: inline-block;
+        right: 500px;
+        bottom: 60px;
+        border-radius: 100%;
+        background: #fff;
+        width: 25px;
+        height: 25px;
+        line-height: 25px;
+        cursor: pointer;
+        color: #333;
+        text-align: center;
+        opacity: 0.8;
+    }
+    .lun:hover {
+        background: #f00;
+        color: #fff;
+    }
+    .lun:hover,
+    #photos:hover {
+        animation-play-state: paused;
+    }
+    .lun:nth-child(5) {
+        margin-right: 0px;
+    }
+    .lun:nth-child(4) {
+        margin-right: 30px;
+    }
+    .lun:nth-child(3) {
+        margin-right: 60px;
+    }
+    .lun:nth-child(2) {
+        margin-right: 90px;
+    }
+    .lun:nth-child(1) {
+        margin-right: 120px;
+    }
+    #a1:hover~#photos {
+        animation: ma1 .5s ease-out forwards;
+    }
+    #a2:hover~#photos {
+        animation: ma2 .5s ease-out forwards;
+    }
+    #a3:hover~#photos {
+        animation: ma3 .5s ease-out forwards;
+    }
+    #a4:hover~#photos {
+        animation: ma4 .5s ease-out forwards;
+    }
+    #a5:hover~#photos {
+        animation: ma5 .5s ease-out forwards;
+    }
+    @keyframes ma1 {
+        0% {
+            margin-left: -0px;
+        }
+        100% {
+            margin-left: -0px;
+        }
+    }
+    @keyframes ma2 {
+        0% {
+            margin-left: -1200px;
+        }
+        100% {
+            margin-left: -1200px;
+        }
+    }
+    @keyframes ma3 {
+        100% {
+            margin-left: -2400px;
+        }
+    }
+    @keyframes ma4 {
+        100% {
+            margin-left: -3600px;
+        }
+    }
+    @keyframes ma5 {
+        100% {
+            margin-left: -4800px;
+        }
+    }
+}
+
+// 轮播图下
+.lunbo2 {
+    height: 130px;
+    .lunbo2_1 {
+        position: relative;
+        width: 1200px;
+        margin: 0 auto;
+        .lunbo2_2 {
+            height: 120px;
+            width: 1110px;
+            margin: 0 auto;
+            box-shadow: 0 0 20px 2px #ccc;
+            display: flex;
+            align-items: center;
+            position: absolute;
+            left: 46px;
+            top: -50px;
+            background-color: #fff;
+            div:nth-of-type(2) {
+                width: 993px;
+                margin: 0 auto;
+                font-size: 0;
+                display: flex;
+                a {
+                    display: inline-block;
+                    height: 108px;
+                    width: 160px;
+                    border: 3px solid transparent;
+                }
+                a:hover {
+                    border: 3px solid #f00;
+                }
+            }
+            div:nth-of-type(1) {
+                width: 58px;
+                height: 120px;
+                display: flex;
+                align-items: center;
+                a {
+                    display: inline-block;
+                    width: 56px;
+                    height: 25px;
+                    background: url("/Content/BodyImgs/banner_1.png");
+                }
+            }
+            div:nth-of-type(3) {
+                width: 58px;
+                height: 120px;
+                display: flex;
+                align-items: center;
+                a {
+                    display: inline-block;
+                    width: 56px;
+                    height: 25px;
+                    background: url("/Content/BodyImgs/banner_2.png");
+                    margin-left: 3px;
+                }
+            }
+        }
+    }
+}
+
+// 主体
+.mian {
+    .mian1 {
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        article {
+            width: 800px;
+            .zhuL1 {
+                height: 617px;
+                margin-bottom: 62px;
+                .zhuL1_1 {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 20px;
+                    .zhuL1_1_1 {
+                        font-size: 26px;
+                        color: #ef4238;
+                        margin-left: 10px;
+                    }
+                    .zhuL1_1_2 {
+                        margin-right: 60px;
+                        a {
+                            font-size: 14px;
+                            color: #ef4238;
+                            position: relative;
+                        }
+                        a::before {
+                            content: "";
+                            width: 0px;
+                            border-bottom: 1px solid transparent;
+                            transition: all linear 1s;
+                            position: absolute;
+                            left: 14px;
+                            bottom: 0;
+                        }
+                        a:hover::before {
+                            width: 34px;
+                            border-color: #ef4238;
+                            left: -2px;
+                        }
+                        .zhuL1_1_2_2 {
+                            display: inline-block;
+                            width: 8px;
+                            height: 14px;
+                            background: url("/Content/BodyImgs/icon_1.png");
+                            margin-bottom: 2px;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+                .zhuL1_2 {
+                    dl {
+                        margin: 0;
+                        width: 750px;
+                        height: 580px;
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: space-around;
+                        dd {
+                            margin: 0;
+                            width: 160px;
+                            height: 259px;
+                            background-color: #fff;
+                            border: 1px solid #efefef;
+                            .zhuL1_2_1 {
+                                width: 160px;
+                                height: 220px;
+                                position: relative;
+                                a {
+                                    div {
+                                        position: absolute;
+                                        bottom: 0;
+                                        display: flex;
+                                        width: 160px;
+                                        height: 80px;
+                                        background: url("/Content/BodyImgs/index_bei.png");
+                                        padding: 0 10px 10px;
+                                        box-sizing: border-box;
+                                        justify-content: space-between;
+                                        align-items: flex-end;
+                                        span:nth-of-type(1) {
+                                            font-size: 16px;
+                                            color: #fff;
+                                        }
+                                        span:nth-of-type(2) {
+                                            i:nth-of-type(1) {
+                                                font-size: 18px;
+                                                color: #ffb400;
+                                            }
+                                            i:nth-of-type(2) {
+                                                font-size: 14px;
+                                                color: #ffb400;
+                                            }
+                                        }
+                                    }
+                                    .DIMAX3 {
+                                        position: absolute;
+                                        top: 4px;
+                                        left: -3px;
+                                        display: inline-block;
+                                        width: 69px;
+                                        height: 25px;
+                                        background: url("/Content/BodyImgs/3dmax.png");
+                                    }
+                                }
+                            }
+                        }
+                        dd:hover {
+                            box-shadow: 2px 2px 20px 0 #d8d8d8;
+                        }
+                        .zhuL1_2_2 {
+                            width: 160px;
+                            height: 39px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            a {
+                                display: block;
+                                color: #f00;
+                                padding: 10px 60px;
+                            }
+                        }
+                        .zhuL1_2_2:hover {
+                            background: #f00;
+                        }
+                        .zhuL1_2_2:hover a {
+                            color: #fff;
+                        }
+                    }
+                }
+            }
+        }
+        .zhuL2 {
+            .zhuL2_1 {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+                .zhuL2_1_1 {
+                    font-size: 26px;
+                    color: #2d98f3;
+                    margin-left: 10px;
+                }
+                .zhuL2_1_2 {
+                    margin-right: 60px;
+                    a {
+                        font-size: 14px;
+                        color: #2d98f3;
+                        position: relative;
+                    }
+                    a::before {
+                        content: "";
+                        width: 0px;
+                        border-bottom: 1px solid transparent;
+                        transition: all linear 1s;
+                        position: absolute;
+                        left: 14px;
+                        bottom: 0;
+                    }
+                    a:hover::before {
+                        width: 34px;
+                        border-color: #2d98f3;
+                        left: -2px;
+                    }
+                    .zhuL2_1_2_2 {
+                        color: #2d98f3;
+                        display: inline-block;
+                        width: 8px;
+                        height: 14px;
+                        background: url("/Content/BodyImgs/icon_2.png");
+                        margin-bottom: 2px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+            dl {
+                width: 750px;
+                height: 705px;
+                margin: 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                dd {
+                    margin: 0;
+                    width: 162px;
+                    height: 327px;
+                    .zhuL2_2 {
+                        border: 1px solid #efefef;
+                        .zhuL2_2_1 {
+                            width: 160px;
+                            height: 220px;
+                            background-color: #fff;
+                            position: relative;
+                            div {
+                                position: absolute;
+                                bottom: 0;
+                                display: flex;
+                                width: 160px;
+                                height: 80px;
+                                background: url("/Content/BodyImgs/index_bei.png");
+                                padding: 0 10px 10px;
+                                box-sizing: border-box;
+                                justify-content: space-between;
+                                align-items: flex-end;
+                                span {
+                                    color: #fff;
+                                }
+                            }
+                        }
+                        .zhuL2_2_2 {
+                            padding-left: 10px;
+                            font-size: 14px;
+                            color: #ffb400;
+                            background-color: #fbfbfb;
+                            height: 34px;
+                            line-height: 34px;
+                        }
+                        .zhuL2_2_3 {
+                            height: 38px;
+                            line-height: 38px;
+                            text-align: center;
+                            display: flex;
+                            a {
+                                display: inline-block;
+                                width: 50%;
+                            }
+                            a:nth-of-type(1) {
+                                color: #999;
+                                font-size: 14px;
+                                border-right: 1px dotted #e5e5e5;
+                            }
+                            a:nth-of-type(2) {
+                                color: #2d98f3;
+                                font-size: 14px;
+                            }
+                            a:nth-of-type(2):hover {
+                                color: #fff;
+                                background-color: #2d98f3;
+                            }
+                        }
+                    }
+                    .zhuL2_3 {
+                        color: #999;
+                        font-size: 14px;
+                        line-height: 34px;
+                        text-align: center;
+                    }
+                }
+                dd:hover>.zhuL2_2 {
+                    box-shadow: 2px 2px 20px 0 #d8d8d8;
+                }
+            }
+        }
+    } // 右
+    aside {
+        width: 360px;
+        height: 2000px;
+        .zhuR1 {
+            height: 473px;
+            .zhuR1_1 {
+                span {
+                    color: #ef4238;
+                    font-size: 26px;
+                }
+            }
+            .zhuR1_2 {
+                margin-top: 23px;
+                height: 424px;
+                ul {
+                    li:hover {
+                        background-color: #fafafa;
+                    }
+                    li:nth-of-type(1) {
+                        border: 1px solid #efefef;
+                        height: 80px;
+                        display: flex;
+                        margin-bottom: 11px;
+                        div:nth-of-type(1) {
+                            width: 120px;
+                            height: 80px;
+                            position: relative;
+                            i {
+                                position: absolute;
+                                top: 0;
+                                display: inline-block;
+                                width: 22px;
+                                height: 26px;
+                                background: url("/Content/BodyImgs/shouye_zhuti _R_1.png");
+                            }
+                        }
+                        div:nth-of-type(2) {
+                            margin-left: 10px;
+                            flex-grow: 1;
+                            .zhuR1_2_h2 {
+                                display: inline-block;
+                                font-size: 18px;
+                                color: #333;
+                                margin-top: 20px;
+                            }
+                            p {
+                                margin-top: 12px;
+                                color: #ef4238;
+                                font-size: 14px;
+                                span {
+                                    color: #ef4238;
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                    }
+                    li:not(:nth-of-type(1)) {
+                        height: 36px;
+                        line-height: 36px;
+                        a {
+                            width: 360px;
+                            display: flex;
+                            justify-content: space-between;
+                            .zhuR1_2_2 {
+                                i {
+                                    font-size: 18px;
+                                    color: #999;
+                                    display: inline-block;
+                                    width: 20px;
+                                }
+                                .qian23 {
+                                    color: #ef4238;
+                                }
+                                .zhuR1_2_2_1 {
+                                    font-size: 16px;
+                                    color: #333;
+                                }
+                            }
+                            .zhuR1_2_3 {
+                                font-size: 14px;
+                                color: #ef4238;
+                                .zhuR1_2_3_1 {
+                                    font-size: 14px;
+                                    color: #ef4238;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .zhuR2 {
+            margin-top: 29px;
+            border: 1px solid #efefef;
+            background-color: #fdfdfd;
+            display: flex;
+            .zhuR21 {
+                width: 40px;
+                padding: 10px;
+                box-sizing: border-box;
+                color: #fff;
+                background-color: #ef4238;
+                span {
+                    font-size: 17px;
+                }
+            }
+            .zhuR22 {
+                margin-left: 10px;
+                flex-grow: 1;
+                p:nth-of-type(1) {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-top: 20px;
+                    .zhuR22_1 {
+                        font-size: 14px;
+                        color: #ef4238;
+                        .zhuR22_12 {
+                            font-size: 30px;
+                            color: #ef4238;
+                        }
+                    }
+                    .zhuR22_11 {
+                        margin-right: 10px;
+                        a {
+                            color: #ef4238;
+                            font-size: 14px;
+                            position: relative;
+                        }
+                        a::before {
+                            content: "";
+                            width: 0px;
+                            border-bottom: 1px solid transparent;
+                            transition: all linear 1s;
+                            position: absolute;
+                            left: 30px;
+                            bottom: 0;
+                        }
+                        a:hover::before {
+                            width: 60px;
+                            border-color: #ef4238;
+                            left: -2px;
+                        }
+                        i {
+                            display: inline-block;
+                            width: 8px;
+                            height: 14px;
+                            background: url("/Content/BodyImgs/icon_1.png");
+                            margin-bottom: 2px;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+                p:nth-of-type(2) {
+                    .zhuR22_21 {
+                        font-size: 14px;
+                        color: #999;
+                    }
+                    .zhuR22_22 {
+                        float: right;
+                        font-size: 14px;
+                        color: #999;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+        .zhuR3 {
+            margin-top: 80px;
+            .zhuR3_1 {
+                width: 360px;
+                height: 26px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .zhuR3_1_1 {
+                    font-size: 26px;
+                    color: #ffb400;
+                }
+                .zhuR3_1_2 {
+                    a {
+                        font-size: 14px;
+                        color: #ffb400;
+                        position: relative;
+                    }
+                    a::before {
+                        content: "";
+                        width: 0px;
+                        border-bottom: 1px solid transparent;
+                        transition: all linear 1s;
+                        position: absolute;
+                        left: 40px;
+                        bottom: 0;
+                    }
+                    a:hover::before {
+                        width: 88px;
+                        border-color: #ffb400;
+                        left: -2px;
+                    }
+                    i {
+                        display: inline-block;
+                        width: 8px;
+                        height: 14px;
+                        background: url("/Content/BodyImgs/shouye_zhuti _R_2.png");
+                        margin-bottom: 2px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+            .zhuR3_2 {
+                margin-top: 23px;
+                ul {
+                    li:hover {
+                        background-color: #fafafa;
+                    }
+                    .zhuR3_21 {
+                        border: 1px solid #efefef;
+                        a {
+                            display: flex;
+                            .zhuR3_21_1 {
+                                width: 140px;
+                                height: 194px;
+                                position: relative;
+                                i {
+                                    position: absolute;
+                                    top: 0;
+                                    display: inline-block;
+                                    width: 22px;
+                                    height: 26px;
+                                    background: url("/Content/BodyImgs/shouye_zhuti _R_3.png");
+                                }
+                            }
+                            .zhuR3_21_2 {
+                                margin-left: 10px;
+                                display: flex;
+                                align-items: center;
+                                div {
+                                    .zhuR3_21_21 {
+                                        font-size: 18px;
+                                        color: #333;
+                                    }
+                                    p:nth-of-type(1) {
+                                        margin-top: 12px;
+                                        color: #999;
+                                    }
+                                    p:nth-of-type(2) {
+                                        margin-top: 12px;
+                                        font-size: 14px;
+                                        color: #ffb400;
+                                        span {
+                                            font-size: 14px;
+                                            color: #ffb400;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .zhuR3_22 {
+                        border: 1px solid #efefef;
+                        position: relative;
+                        width: 170px;
+                        float: left;
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+                        padding-bottom: 8px;
+                        a {
+                            .zhuR3_22_1 {
+                                width: 170px;
+                                height: 118px;
+                                position: relative;
+                                i {
+                                    position: absolute;
+                                    top: 0;
+                                    padding-left: 4px;
+                                    width: 16px;
+                                    color: #fff;
+                                    background-color: #ffb400;
+                                }
+                            }
+                            .zhuR3_22_2 {
+                                p:nth-of-type(1) {
+                                    font-size: 18px;
+                                    color: #333;
+                                    margin-top: 8px;
+                                    margin-left: 10px;
+                                    margin-right: 10px;
+                                }
+                                p:nth-of-type(2) {
+                                    font-size: 18px;
+                                    color: #333;
+                                    margin-top: 8px;
+                                    margin-left: 10px;
+                                    margin-right: 10px;
+                                    font-size: 14px;
+                                    color: #fdb863;
+                                    span {
+                                        font-size: 14px;
+                                        color: #fdb863;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .zhuR3_22:nth-of-type(3) {
+                        margin-left: 16px;
+                    }
+                    li:not(:nth-child(-n+3)) {
+                        line-height: 36px;
+                        a {
+                            width: 360px;
+                            display: flex;
+                            justify-content: space-between;
+                            .zhuR3_2_2 {
+                                i {
+                                    font-size: 18px;
+                                    color: #999;
+                                    display: inline-block;
+                                    width: 20px;
+                                }
+                                .zhuR3_2_2_1 {
+                                    font-size: 16px;
+                                    color: #333;
+                                }
+                            }
+                            .zhuR3_2_3 {
+                                font-size: 14px;
+                                color: #fdb863;
+                                .zhuR1_2_3_1 {
+                                    font-size: 14px;
+                                    color: #fdb863;
+                                }
+                            }
+                        }
+                    }
+                    .zhuR3_23 {
+                        margin-top: 227px;
+                    }
+                }
+            }
+        }
+        .zhuR4 {
+            margin-top: 80px;
+            .zhuR4_1 {
+                width: 360px;
+                height: 26px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                .zhuR4_1_1 {
+                    font-size: 26px;
+                    color: #ffb400;
+                }
+                .zhuR4_1_2 {
+                    a {
+                        font-size: 14px;
+                        color: #ffb400;
+                        position: relative;
+                    }
+                    a::before {
+                        content: "";
+                        width: 0px;
+                        border-bottom: 1px solid transparent;
+                        transition: all linear 1s;
+                        position: absolute;
+                        left: 40px;
+                        bottom: 0;
+                    }
+                    a:hover::before {
+                        width: 88px;
+                        border-color: #ffb400;
+                        left: -2px;
+                    }
+                    i {
+                        display: inline-block;
+                        width: 8px;
+                        height: 14px;
+                        background: url("/Content/BodyImgs/shouye_zhuti _R_2.png");
+                        margin-bottom: 2px;
+                        vertical-align: middle;
+                    }
+                }
+            }
+            .zhuR4_2 {
+                margin-top: 23px;
+                height: 424px;
+                ul {
+                    li:hover {
+                        background-color: #fafafa;
+                    }
+                    li:nth-of-type(1) {
+                        border: 1px solid #efefef;
+                        height: 80px;
+                        display: flex;
+                        margin-bottom: 11px;
+                        div:nth-of-type(1) {
+                            width: 120px;
+                            height: 80px;
+                            position: relative;
+                            i {
+                                position: absolute;
+                                top: 0;
+                                display: inline-block;
+                                width: 22px;
+                                height: 26px;
+                                background: url("/Content/BodyImgs/shouye_zhuti _R_4.png");
+                            }
+                        }
+                        div:nth-of-type(2) {
+                            margin-left: 10px;
+                            flex-grow: 1;
+                            .zhuR4_2_h2 {
+                                display: inline-block;
+                                font-size: 18px;
+                                color: #333;
+                                margin-top: 20px;
+                            }
+                            p {
+                                margin-top: 12px;
+                                color: #ffb400;
+                                font-size: 14px;
+                                span {
+                                    color: #ffb400;
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                    }
+                    li:not(:nth-of-type(1)) {
+                        height: 36px;
+                        line-height: 36px;
+                        a {
+                            width: 360px;
+                            display: flex;
+                            justify-content: space-between;
+                            .zhuR4_2_2 {
+                                i {
+                                    font-size: 18px;
+                                    color: #999;
+                                    display: inline-block;
+                                    width: 20px;
+                                }
+                                .qian23 {
+                                    color: #ffb400;
+                                }
+                                .zhuR4_2_2_1 {
+                                    font-size: 16px;
+                                    color: #333;
+                                }
+                            }
+                            .zhuR4_2_3 {
+                                font-size: 14px;
+                                color: #ffb400;
+                                .zhuR4_2_3_1 {
+                                    font-size: 14px;
+                                    color: #ffb400;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 底部
+footer {
+    background-color: #262426;
+    padding: 56px 0;
+    margin: 0 auto;
+    min-width: 1200px;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-top: 80px;
+    p:nth-of-type(3) {
+        a {
+            color: #ef4238;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        span {
+            display: inline-block;
+            border-left: 1px solid #444;
+            margin: 0 7px;
+            height: 12px;
+        }
+    }
+    p:nth-of-type(4) {
+        a {
+            color: #666;
+            font-size: 14px;
+        }
+    }
+}
+
+// 喵
+.miao {
+    background: url("/Content/BodyImgs/cat.png");
+    width: 72px;
+    height: 121px;
+    position: fixed;
+    right: -72px;
+    bottom: 100px;
+    opacity: 0.7;
+}
+
+body:hover {
+    .miao {
+        animation: miao linear 4s infinite;
+    }
+    @keyframes miao {
+        0% {
+            transform: translate(0) rotate(45deg);
+        }
+        30%,
+        60% {
+            transform: translate(-60px, 0);
+        }
+        50% {
+            transform: translate(-72px, 0);
+        }
+    }
+}

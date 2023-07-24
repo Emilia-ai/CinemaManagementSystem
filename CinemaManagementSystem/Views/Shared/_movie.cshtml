@@ -1,0 +1,40 @@
+﻿
+<div class="yingpian">
+    <dl>
+        @foreach (var item in Model)
+        {
+            <dd>
+                <div>
+                    <i class="@item.screentype"></i>
+                    <a href="/Index/MovieDetail?id=@item.movieid">
+                        <img src=@item.pic alt="" style="width:160px;height:220px">
+                    </a>
+                    <a href="./dianyingxiangqing.html">购票</a>
+                </div>
+                <div>
+                    <a href="/Index/MovieDetail?@item.movieid" title="@item.moviename">@item.moviename</a>
+                </div>
+                <div>
+                    <i>9.</i>
+                    <i>3</i>
+                </div>
+            </dd>
+        }
+    </dl>
+</div>
+<div id="pages">
+    @using X.PagedList
+    @using X.PagedList.Mvc
+    @using X.PagedList.Mvc.Common;
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Movie", new { page }), new PagedListRenderOptions
+        {
+                               LinkToFirstPageFormat = "首页",
+                               LinkToNextPageFormat = "下一页",
+                               LinkToPreviousPageFormat = "上一页",
+                               LinkToLastPageFormat = "末页",
+                               DisplayItemSliceAndTotal = false,
+
+
+        })
+</div>
+<!-- 页 -->

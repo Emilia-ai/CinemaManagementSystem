@@ -1,0 +1,76 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ActiveMail</title>
+    <script src="~/Scripts/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="~/Content/ElementUI/index.css">
+    <!-- 引入组件库 -->
+    <script src="~/Scripts/index.js"></script>
+
+
+</head>
+<body>
+    <div id="app">
+        @if (ViewBag.code == 2)
+        {
+            <div id="success">
+                <el-row>
+                    <el-col :sm="30" :lg="60">
+                        <el-result icon="success" title="激活成功" sub-Title="请点击下方按钮跳转至主页">
+                            <template slot="extra">
+                                <el-button type="primary" size="medium" onclick="index()">返回</el-button>
+                            </template>
+                        </el-result>
+                    </el-col>
+                </el-row>
+            </div>
+        }
+        else
+        {
+            <div id="false">
+                <el-row>
+                    <el-col :sm="30" :lg="60">
+                        <el-result icon="error" title="激活失败" sub-Title="请检查激活邮件是否过期">
+                            <template slot="extra">
+                                <el-button type="primary" size="medium" onclick="index_r()">返回</el-button>
+                            </template>
+                        </el-result>
+                    </el-col>
+                </el-row>
+            </div>
+        }
+
+
+    </div>
+    
+</body>
+</html>
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+           
+               
+    
+        }
+    })
+    function index() {
+        window.location.href = "/LoginAndResinger/Login"
+    }
+    function index_r() {
+       window.location.href="/LoginAndResinger/Resigner"
+    }
+</script>

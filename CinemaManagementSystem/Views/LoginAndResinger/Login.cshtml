@@ -1,0 +1,351 @@
+﻿
+@{
+    ViewBag.Title = "夏日生活";
+    Layout = "~/Views/Shared/LoginAndResigner.cshtml";
+}
+<link rel="stylesheet" href="~/Content/ElementUI/element-ui.css" />
+<script src="~/Scripts/jquery-3.6.0.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/vue.js"></script>
+<script src="~/Scripts/ElementUI/element-ui.js"></script>
+<link rel="shortcut icon" href="~/Content/img/logo.png" type="image/x-icon">
+
+
+<div class="max-w-md w-full mx-auto space-y-8" id="app">
+    <div class="text-center">
+        <h2 class="mt-6 text-3xl font-bold text-gray-900">欢迎回来</h2>
+        <p class="mt-2 text-sm text-gray-500">其他登录方式</p>
+    </div>
+    <div class="flex flex-row justify-center items-center space-x-3">
+
+        <a h
+           class="
+                                    w-11
+                                    h-11
+                                    items-center
+                                    justify-center
+                                    inline-flex
+                                    rounded-2xl
+                                    font-bold
+                                    text-lg
+                                    bg-blue-900
+                                    hover:shadow-lg
+                                    cursor-pointer
+                                    transition
+                                    ease-in
+                                    duration-300
+                                " v-on:click="changemode(0)">
+
+            <img class="w-7 h-7"
+                 src="~/Content/img/邮箱ico.png" />
+
+        </a>
+        <a href="javascript:"
+           class="
+                                    w-11
+                                    h-11
+                                    items-center
+                                    justify-center
+                                    inline-flex
+                                    rounded-2xl
+                                    font-bold
+                                    text-lg text-white
+                                    bg-blue-400
+                                    hover:shadow-lg
+                                    cursor-pointer
+                                    transition
+                                    ease-in
+                                    duration-300
+                                ">
+            <img style="height: 20px;"
+                 src="~/Content/img/新图网_QQ的头像企鹅图标_ixintu.com.png" />
+        </a>
+        <a href="javascript:"
+           class="
+                                    w-11
+                                    h-11
+                                    items-center
+                                    justify-center
+                                    inline-flex
+                                    rounded-2xl
+                                    font-bold
+                                    text-lg text-white
+                                    bg-blue-500
+                                    hover:shadow-lg
+                                    cursor-pointer
+                                    transition
+                                    ease-in
+                                    duration-300
+                                " v-on:click="changemode(1)">
+            <img src="~/Content/img/手机ico.png" class="w-7 h-7" />
+
+        </a>
+
+    </div>
+    <div id="change">
+        <div v-if="isShow">
+            <div class="flex items-center justify-center space-x-2">
+                <span class="h-px w-16 bg-gray-200"></span>
+                <span class="text-gray-300 font-normal">使用手机号登录</span>
+                <span class="h-px w-16 bg-gray-200"></span>
+            </div>
+
+            <form method="post" action="checklogin">
+                <input type="hidden" name="remember" value="true" />
+                <div class="relative">
+                    <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">手机号</label>
+                    <div class="rounded-2xl">
+                        <div>
+                            <input class="
+                 w-full
+                content-center
+                text-base
+                px-4
+                py-2
+                border-b
+                rounded-2xl
+                border-gray-300
+                focus:outline-none focus:border-indigo-500
+               "
+                                   placeholder="请输入您的手机号码" name="tel" id="phonenum" />
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 content-center">
+                    <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">密码</label>
+                    <input class="
+                    w-full
+                    content-center
+                    text-base
+                    px-4
+                    py-2
+                    border-b
+                    rounded-2xl
+                    border-gray-300
+                    focus:outline-none focus:border-indigo-500
+                "
+                           placeholder="请输入密码" name="check" id="PassWord" />
+                    <!--<div style="float:right;margin-top:-33px;position:relative;margin-right:35px">
+                        <el-button type="text" id="sendcodes" style="margin-top:-10px" :disabled="disabled" v-on:click="sendcode">发送验证码</el-button>-->
+                    @*<a href="#" id="sendcodes" disabled="true">发送验证码</a>*@
+                    <!--</div>-->
+                </div>
+                <div class="flex items-center justify-between" style="margin-top:20px;margin-bottom:30px">
+                    <div class="flex items-center">
+                        <input id="remember_me"
+                               name="remember_me"
+                               type="checkbox"
+                               class="
+                        h-4
+                        w-4
+                        bg-blue-500
+                        focus:ring-blue-400
+                        border-gray-300
+                        rounded
+                    " />
+                        <label for="remember_me"
+                               class="ml-2 block text-sm text-gray-900">记住我</label>
+                    </div>
+                    <div class="text-sm">
+                        <a href="#" class="text-indigo-400 hover:text-blue-500">忘记密码？</a>
+                    </div>
+                </div>
+            </form>
+            @*<div>
+                    <button type="submit"
+                            class="
+                        w-full
+                        flex
+                        justify-center
+                        bg-gradient-to-r
+                        from-indigo-500
+                        to-blue-600
+                        hover:bg-gradient-to-l
+                        hover:from-blue-500
+                        hover:to-indigo-600
+                        text-gray-100
+                        p-4
+                        rounded-full
+                        tracking-wide
+                        font-semibold
+                        shadow-lg
+                        cursor-pointer
+                        transition
+                        ease-in
+                        duration-500
+                    ">
+                        登 录
+                    </button>
+                </div>*@
+        </div>
+        <div v-else>
+            <div class="flex items-center justify-center space-x-2">
+                <span class="h-px w-16 bg-gray-200"></span>
+                <span class="text-gray-300 font-normal">使用邮箱登录</span>
+                <span class="h-px w-16 bg-gray-200"></span>
+            </div>
+
+            <form method="post" action="Login">
+                <input type="hidden" name="remember" value="true" />
+                <div class="relative">
+                    <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">邮箱账号</label>
+                    <div class="rounded-2xl">
+                        <div>
+                            <input class="
+                 w-full
+                content-center
+                text-base
+                px-4
+                py-2
+                border-b
+                rounded-2xl
+                border-gray-300
+                focus:outline-none focus:border-indigo-500
+               "
+                                   placeholder="请输入您的邮箱账号" name="tel" id="Email" />
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-8 content-center">
+                    <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">密码</label>
+                    <input class="
+                    w-full
+                    content-center
+                    text-base
+                    px-4
+                    py-2
+                    border-b
+                    rounded-2xl
+                    border-gray-300
+                    focus:outline-none focus:border-indigo-500
+                "
+                           placeholder="请输入密码" name="check" id="PassWord" />
+                    <div style="float:right;margin-top:-33px;position:relative;margin-right:35px">
+
+
+                    </div>
+                </div>
+
+            </form>
+            <div class="flex items-center justify-between" style="margin-top:20px;margin-bottom:30px">
+                <div class="flex items-center">
+                    <input id="remember_me"
+                           name="remember_me"
+                           type="checkbox"
+                           class="
+                        h-4
+                        w-4
+                        bg-blue-500
+                        focus:ring-blue-400
+                        border-gray-300
+                        rounded
+                    " />
+                    <label for="remember_me"
+                           class="ml-2 block text-sm text-gray-900">记住我</label>
+                </div>
+                <div class="text-sm">
+                    <a href="#" class="text-indigo-400 hover:text-blue-500">忘记密码？</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div>
+        <button type="submit"
+                class="
+                    w-full
+                    flex
+                    justify-center
+                    bg-gradient-to-r
+                    from-indigo-500
+                    to-blue-600
+                    hover:bg-gradient-to-l
+                    hover:from-blue-500
+                    hover:to-indigo-600
+                    text-gray-100
+                    p-4
+                    rounded-full
+                    tracking-wide
+                    font-semibold
+                    shadow-lg
+                    cursor-pointer
+                    transition
+                    ease-in
+                    duration-500
+                " onclick="login()">
+            登 录
+        </button>
+    </div>
+
+    <p class="
+                items-center
+                justify-center
+                mt-10
+                text-center text-md text-gray-500
+            ">
+        <span>还没有账号？</span>
+        <a href="Resigner"
+           target="_blank"
+           class="
+                    text-indigo-400
+                    hover:text-blue-500
+                    no-underline
+                    hover:underline
+                    cursor-pointer
+                    transition
+                    ease-in
+                    duration-300
+                ">立即注册</a>
+    </p>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data:
+            function () {
+                return {
+                    isShow: false,
+                    disabled: undefined
+                };
+            },
+        methods: {
+            changemode: function (select) {
+                if (select == 1) {
+                    this.isShow = true
+                }
+                else {
+                    this.isShow = false
+                }
+            },
+        }
+    })
+
+    function login() {
+        $.ajax({
+            type: "post",
+            url: "/LoginAndResinger/login/",　　　　//请求链接格式：页面文件/请求的操作(页面的带有WebMethod前缀的静态函数)
+            data: JSON.stringify　　　　　　　  //传递的参数使用JSON.stringify转译为JSON格式
+                ({
+                    "Email": $("#Email").val(),
+                    "PassWord": $("#PassWord").val(),
+                    "phonenum": $("#phonenum").val()
+                    /*"code": $("#UserName").val(),*/
+                    //传递给后台的参数格式："参数名":值。参数名与参数个数一定要与后台函数的参数名及参数个数完全一致
+                }),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (data) {
+                if (data == "1") {
+                    location.href = '/Index/Index/'
+                }
+                else {
+                    alert("账号或者密码错误，请重试！");
+                }
+            },
+            error: function (err) {
+                alert("登陆异常，请联系工作人员")
+            }
+        })
+    }
+</script>

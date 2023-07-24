@@ -1,0 +1,301 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>电影</title>
+    <link rel="stylesheet" href="~/Content/ElementUI/element-ui.css" />
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/css/dianying.css">
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/ElementUI/element-ui.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="~/Content/img/logo.png" type="image/x-icon">
+</head>
+<body onload="diao()">
+    <header class="dingbu">
+        <nav>
+            <a href="#" class="logo">
+                <img src="~/Content/img/logo.png" style="height:80px;width:100px;" />
+            </a>
+            <div class="xiala1 bian">
+                <div class="xiala1_1">
+                    <a href="#" class="cd">成都</a>
+                    <span class="sanjiao"></span>
+                    <ul>
+                        <div class="xiala1_1_d">
+                            定位城市：
+                            <a href="#">成都</a>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="/Index/Index">首页</a>
+                </li>
+                <li>
+                    <a href="/Index/Movie">电影</a>
+                </li>
+                <li>
+                    <a href="/Index/Cinema">影院</a>
+                </li>
+                <li>
+                    <a href="/Index/bangdan">榜单</a>
+                </li>
+
+            </ul>
+            <div class="shouji bian">
+                <span class="shouji_1"></span>
+                <span>APP下载</span>
+                <span class="sanjiao"></span>
+                <div class="shouji1">
+                    <div>
+                        <div></div>
+                    </div>
+                    <p>扫码下载APP</p>
+                    <p>选座更优惠</p>
+                </div>
+            </div>
+            <div class="sousuo">
+                <input class="sousuo_1" id="text" type="search" maxlength="32" placeholder="找电影" autocomplete="off">
+                <button class="sousuo_2" type="button" value="" onclick="select()"></button>
+            </div>
+            <div class="denglu bian">
+                <a href="#">
+                    <img src="@ViewBag.picture" class="img-circle" alt="Cinque Terre" width="100" height="52">
+                </a>
+
+                <div>
+                    <a href="/LoginAndResinger/Login" target="blank" id="enter">登录</a>
+                    <a href="/UserInfo/Infoes" target="blank" class="myinfo">个人中心</a>
+                    <a href="/LoginAndResinger/Login" target="blank" class="myinfo">退出登录</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- 大类 -->
+    <div id="heder-li">
+        @*<ul class="nav nav-pills">
+            <li class="active"><a href="#">正在热映</a></li>
+            <li ><a href="#">即将上映</a></li>
+        </ul>*@
+        <div id="app" style="margin-left:37%">
+            <el-menu :default-active="activeIndex2"class="el-menu-demo" mode="horizontal" @@select="handleSelect" background-color="#545c64"text-color="#fff"active-text-color="#ffd04b">
+                <el-menu-item index="1" i><a onclick="diao(1)">正在热映</a></el-menu-item>
+                <el-menu-item index="2" style="margin-left:100px"><a target="_blank" onclick="diao(2)">即将上映</a></el-menu-item>
+            </el-menu>
+        </div>
+        </div>
+    <!-- 主体 -->
+    <div class="main">
+        <article>
+            <!-- 电影详细分类 -->
+            <div class="lei">
+                <ul class="lei_1">
+                    <li>
+                        <div>
+                            类型：
+                        </div>
+                        <ul class="lei_2">
+                            <li>
+                                <input type="radio" id="quanbu" name="leixing" checked="checked">
+                                <label for="quanbu">
+                                    <a onclick="diao()">全部</a>
+                                </label>
+                                @foreach (var item in ViewBag.movietype)
+                                {
+                                    <input type="radio" id="@item.id" name="leixing">
+                                    <label for="@item.id">
+                                        <a onclick="diao()">@item.type</a>
+                                    </label>
+                                }
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div>
+                            区域：
+                        </div>
+                        <ul class="lei_2">
+                            <li>
+                                <input type="radio" id="quanbu2" name="quyu" checked>
+                                <label for="quanbu2">
+                                    <a onclick="diao()">全部</a>
+                                </label>
+                                @foreach (var item in ViewBag.area)
+                                {
+                                    <input type="radio" id="@item.name" name="quyu">
+                                    <label for="@item.name">
+                                        <a onclick="diao()">@item.area1</a>
+                                    </label>
+                                }
+
+</ul>
+                    </li>
+                    <li>
+                        <div>
+                            年代：
+                        </div>
+                        <ul class="lei_2">
+                            <li>
+                                <input type="radio" id="quanbu3" name="niandai" checked>
+                                <label for="quanbu3">
+                                    <a onclick="diao()">全部</a>
+                                </label>
+                                @foreach (var item in ViewBag.years)
+                                {
+                                    <input type="radio" id="@item.id" name="niandai" />
+                                    <label for="@item.id">
+                                        <a onclick="diao()">@item.time</a>
+                                    </label>
+                                }
+
+
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 排序 -->
+            <div class="paixu">
+                <ul>
+                    <li>
+                        <input type="radio" id="anremen" name="paixu" checked value="1">
+                        <label for="anremen">
+                            <a onclick="diao()">按热门排序</a>
+                        </label>
+                        <input type="radio" id="anshijian" name="paixu"  value="2">
+                        <label for="anshijian">
+                            <a onclick="diao()">按时间排序</a>
+                        </label>
+                        <input type="radio" id="anpingjia" name="paixu"  value="3">
+                        <label for="anpingjia">
+                            <a onclick="diao()">按评价排序</a>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <!-- 影片 -->
+            <div id="change" class="yingpian">
+
+            </div>
+            
+        </article>
+    </div>
+    <!-- 底部 -->
+    <footer>
+        <p>
+            商务合作邮箱：v@maoyan.com 客服电话：10105335 违法和不良信息举报电话：4006018900
+        </p>
+        <p>
+            投诉举报邮箱：tousujubao@meituan.com 舞弊线索举报邮箱：wubijubao@maoyan.com
+        </p>
+        <p>
+            友情链接 :
+            <a href="#">美团网</a>
+            <span></span>
+            <a href="#">美团下载</a>
+            <span></span>
+            <a href="#">欢喜首映</a>
+        </p>
+        <p>
+            ©2016猫眼电影 maoyan.com
+            <a href="#">京ICP证160733号</a>
+            <a href="#">京ICP备16022489号-1</a>
+            <a href="#">京公网安备 11010102003232号</a>
+            <a href="#">网络文化经营许可证</a>
+            <a href="#">电子公告服务规则</a>
+        </p>
+        <p>
+            北京猫眼文化传媒有限公司
+        </p>
+    </footer>
+    <!-- 喵 -->
+    <a class="miao" href="./zajindan.html" target="blank">
+    </a>
+    <script>
+        window.onload = function init() {
+             if (@ViewBag.code== 1) {
+                var info = document.getElementsByClassName("myinfo")
+                for (var i = 0; i < info.length; i++) {
+                    info[i].style.display = "none"
+                }
+
+            }
+            else {
+                var ent = document.getElementById("enter")
+                ent.style.display="none"
+            }
+            diao();
+        }
+
+        function diao(id) {
+            if (id != null) {
+                document.cookie = "id=" + id;
+            }
+
+            setTimeout(function () {
+                var type = $(':radio[name="leixing"]:checked').next().children().text();
+                var country = $("input[name='quyu']:checked").next().children().text();
+                var time = $("input[name='niandai']:checked").next().children().text();
+                var range = $("input[name='paixu']:checked").val();
+                var s = $("a[name='paixu']:checked").val();
+                $.ajax({
+                    url: '/Index/Movie',//控制器活动,返回一个分部视图,并且给分部视图传递数据.
+                    data: JSON.stringify　　　　　　　  //传递的参数使用JSON.stringify转译为JSON格式
+                        ({
+                            "range": range,
+                            "Id": id,
+                            "Type": type,
+                            "Country": country,
+                            "Date": time,
+                        }),
+                    type: 'Post',
+                    contentType: 'application/json;charset=utf-8',//数据类型必须有
+                    async: true,//异步
+                    success: function (data) //成功后的回调方法
+                    {
+
+                        $("#change").html(data);
+
+                    },
+                    error: function (data) {
+                        alert("失败:" + data[0])//弹出框
+                    }
+
+                });
+            }, 5 * 100);
+        }
+        new Vue({
+            el: '#app',
+            data:
+                function () {
+                    return {
+                        activeIndex: '1',
+                        activeIndex2: '1'
+                    };
+                },
+        })
+        function select() {
+            console.log("Sss")
+            var text = document.getElementById("text").value
+            var a = document.createElement("a")
+            a.href = "/Index/selectmovie?moviename=" + text
+            a.click();
+        }
+    </script>
+</body>
+
+</html>

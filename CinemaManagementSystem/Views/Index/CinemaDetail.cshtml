@@ -1,0 +1,381 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>影院详情</title>
+    <link rel="stylesheet" href="~/Content/css/cinemadatas.css">
+    <link rel="stylesheet" href="~/Content/css/clear.css">
+    <link rel="stylesheet" href="~/Content/css/normalize.css">
+    <link rel="stylesheet" href="~/Content/css/yingyuan.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/css/CinemaIndex.css">
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/ElementUI/element-ui.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="shortcut icon" href="~/Content/img/logo.png" type="image/x-icon">
+</head>
+<body>
+    @*<header>
+            <div class="header-body">
+                <a href="index.html?123" class="logo">猫眼电影</a>
+                <div class="city">
+                    成都
+                    <span class="caret"></span>
+                </div>
+                <div class="city-list">
+                    <div class="now-city">
+                        定位城市: 定位失败
+                    </div>
+                    <div class="citys">
+                        <span class="icon"></span> 定位失败
+                    </div>
+                </div>
+                <div class="nav">
+                    <ul class="nav-list">
+                        <li><a href="index.html?123" class="nav-model">首页</a></li>
+                        <li><a href="movies.html" class="nav-model">电影</a></li>
+                        <li><a href="cinemas.html" class="nav-model">影院</a></li>
+                        <li class="nav-model">演出</li>
+                        <li class="nav-model">榜单</li>
+                        <li class="nav-model">热点</li>
+                        <li class="nav-model">商城</li>
+                    </ul>
+                </div>
+                <div class="app-download">
+                    <a href="#">
+                        <span class="phone"></span> APP下载
+                        <span class="caret"></span>
+
+                        <div class="appcode">
+                            <img src="~/Content/BodyImgs/phone.png" class="app-code"></img>
+                            <p class="down-tip">扫码下载APP</p>
+                            <p class="down-text">选座更优惠</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="search">
+                    <div type="text" class="searchinput">
+                        <input type="text" class="input" placeholder="找影视剧、影人、影院">
+                        <input class="submit" type="submit" value="">
+                    </div>
+                </div>
+                <div class="userimg">
+                    <img src="~/Content/BodyImgs/denglu_1.png" alt="">
+                    <span class="caret"></span>
+                </div>
+                <div class="userlogin">
+                    <a href="/LoginAndResinger/Login" class=" notlogin">登录</a>
+                    <div class="islogin nologin">
+                        <a href="personal.html" class="info">个人中心</a>
+                        <a href="index.html" class="info">退出</a>
+                    </div>
+                </div>
+        </header>*@
+    <header class="dingbu">
+        <nav>
+            <a href="#" class="logo">
+                <img src="~/Content/img/logo.png" style="height:80px;width:100px;margin-top:-20px" />
+            </a>
+            <div class="xiala1 bian">
+                <div class="xiala1_1">
+                    <a href="#" class="cd">成都</a>
+                    <span class="sanjiao"></span>
+
+                </div>
+            </div>
+            <ul class="navbar">
+                <li>
+                    <a href="/Index/Index">首页</a>
+                </li>
+                <li>
+                    <a href="/Index/Movie">电影</a>
+                </li>
+                <li>
+                    <a href="/Index/Cinema">影院</a>
+                </li>
+                <li>
+                    <a href="/Index/bangdan">榜单</a>
+                </li>
+
+            </ul>
+            <div class="shouji bian">
+                <span class="shouji_1"></span>
+                <span>APP下载</span>
+                <span class="sanjiao"></span>
+                <div class="shouji1">
+                    <div>
+                        <div></div>
+                    </div>
+                    <p>扫码下载APP</p>
+                    <p>选座更优惠</p>
+                </div>
+            </div>
+            <div class="sousuo">
+                <input class="sousuo_1" id="text" type="search" maxlength="32" placeholder="找电影" autocomplete="off">
+                <button class="sousuo_2" type="button" value="" onclick="select()"></button>
+            </div>
+            <div class="denglu bian">
+                <a href="#">
+                    <img src="@ViewBag.picture" class="img-circle" alt="Cinque Terre" width="100" height="52">
+                </a>
+
+                <div>
+                    <a href="/LoginAndResinger/Login" target="blank" id="enter">登录</a>
+                    <a href="/UserInfo/Infoes" target="blank" class="myinfo">个人中心</a>
+                    <a href="/LoginAndResinger/Login" target="blank" class="myinfo">退出登录</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- 页面主体 -->
+    <div class="movie-top">
+        <div class="movie-banner">
+            <div class="movie-img">
+                <img id="cinemaimg" style="height:310px;width:230px">
+            </div>
+            <div class="movie-data">
+                <div class="movie-name">
+                    <h2 class="name" id="cinemaname"></h2>
+                    <h2 class="othername" id="adress"></h2>
+                    <p class="kind" id="phonenum"></p>
+                </div>
+                <div class="movie-btn">
+
+                    <p>
+                        <span>3D眼镜</span>
+                        <span>免押金</span>
+                    </p>
+                    <p>
+                        <span>儿童优惠</span>
+                        <span>1.3米以下小朋友可享受无座免票</span>
+                    </p>
+                    <p>
+                        <span>可停车</span>
+                        <span>目前免费，详请现场咨询影城</span>
+                    </p>
+                </div>
+                <div id="container">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mian">
+        <div class="contents">
+            <div class="list_movie">
+
+                <ul id="ul">
+                    @foreach (var item in ViewBag.movies)
+                    {
+                        <li style="display:none">@item.movieid</li>
+                        <a onclick="Detail(@item.movieid)" href="#">
+                        <li><img src="@item.pic" alt="" style="width:110px;height:153px"></li></a>
+                    }
+
+                    @*<li><img src="https://p0.meituan.net/movie/7b40e56e644cd04915e6e9cc09c1bdb1331242.jpg@106w_145h_1e_1c" alt=""></li>
+                        <li><img src="https://p1.meituan.net/movie/d32c9041e6ad9ec44f03ce7760d0373b102277.jpg@106w_145h_1e_1c" alt=""></li>
+                        <li><img src="https://p1.meituan.net/movie/f99deeeeb74108ab009b79bb59233d5e304355.jpg@106w_145h_1e_1c" alt=""></li>
+                        <li><img src="https://p1.meituan.net/movie/04de313fdd7f3835563d3c4bdfb980735556062.jpg@106w_145h_1e_1c" alt=""></li>
+                        <li><img src="https://p0.meituan.net/movie/02cfa2cbb87de6e8564db0fcf0fba535211625.jpg@106w_145h_1e_1c" alt=""></li>
+                        <li><img src="https://p0.meituan.net/movie/e9bcb46638735a6a7d5a90d416343ba8189361.jpg@106w_145h_1e_1c" alt=""></li>*@
+                </ul>
+                <div class="contor">
+                    <i class="previ">
+                        <img src="images/left.png" alt="">
+                    </i>
+                    <i class="next">
+                        <img src="images/right.png" alt="">
+                    </i>
+                </div>
+            </div>
+            <div id="change"></div>
+
+        </div>
+    </div>
+    <!-- 页面底部 -->
+    <div class="footer" style="visibility: visible;">
+        <p class="friendly-links">
+            关于猫眼 :
+            <a href="#" target="_blank">关于我们</a>
+            <span></span>
+            <a href="#" target="_blank">管理团队</a>
+            <span></span>
+            <a href="#" target="_blank">投资者关系</a> &nbsp;&nbsp;&nbsp;&nbsp; 友情链接 :
+            <a href="#" data-query="utm_source=wwwmaoyan" target="_blank">美团网</a>
+            <span></span>
+            <a href="#" data-query="utm_source=wwwmaoyan">格瓦拉</a>
+            <span></span>
+            <a href="#" data-query="utm_source=wwwmaoyan" target="_blank">美团下载</a>
+            <span></span>
+            <a href="#" data-query="utm_source=maoyan_pc" target="_blank">欢喜首映</a>
+        </p>
+        <p class="friendly-links">
+            商务合作邮箱：v@maoyan.com 客服电话：10105335 违法和不良信息举报电话：4006018900
+        </p>
+        <p class="friendly-links">
+            用户投诉邮箱：tousujubao@meituan.com 舞弊线索举报邮箱：wubijubao@maoyan.com
+        </p>
+        <p class="friendly-links  credentials">
+            <a href="#" target="_blank">中华人民共和国增值电信业务经营许可证 京B2-20190350</a>
+            <span></span>
+            <a href="#" target="_blank">营业性演出许可证 京演（机构）（2019）4094号</a>
+        </p>
+        <p class="friendly-links  credentials">
+            <a href="#" target="_blank">广播电视节目制作经营许可证 （京）字第08478号</a>
+            <span></span>
+            <a href="#" target="_blank">网络文化经营许可证 京网文（2019）3837-369号 </a>
+        </p>
+        <p class="friendly-links  credentials">
+            <a href="#" target="_blank">猫眼用户服务协议 </a>
+            <span></span>
+            <a href="#" target="_blank">猫眼平台交易规则总则 </a>
+            <span></span>
+            <a href="#" target="_blank">隐私政策 </a>
+        </p>
+        <p class="friendly-links  credentials">
+            <a href="" target="_blank">
+                京公网安备
+                11010102003232号
+            </a>
+            <span></span>
+            <a href="#/" target="_blank">京ICP备16022489号</a>
+        </p>
+        <p>北京猫眼文化传媒有限公司</p>
+        <p>
+            ©<span class="my-footer-year">2020</span> 猫眼电影 maoyan.com
+        </p>
+        <div class="certificate">
+            <a href="#" target="_blank">
+                <img src="http://p0.meituan.net/moviemachine/e54374ccf134d1f7b2c5b075a74fca525326.png">
+            </a>
+            <a href="#" target="_blank">
+                <img src="http://p1.meituan.net/moviemachine/805f605d5cf1b1a02a4e3a5e29df003b8376.png">
+            </a>
+            <a href="h#" target="_blank">
+                <img src="http://p0.meituan.net/scarlett/3cd2a9b7dc179531d20d27a5fd686e783787.png">
+            </a>
+        </div>
+    </div>
+
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=d087973c8af8ef28b4a5f66df7b323f1"></script>
+    <script>
+        window.onload = function init() {
+
+             if (@ViewBag.code== 1) {
+                var info = document.getElementsByClassName("myinfo")
+                for (var i = 0; i < info.length; i++) {
+                    info[i].style.display = "none"
+                }
+
+            }
+            else {
+                var ent = document.getElementById("enter")
+                ent.style.display="none"
+            }
+
+            $.ajax({
+                url: "https://restapi.amap.com/v3/place/detail?id=" +"@ViewBag.cinemaid"+"&key=d087973c8af8ef28b4a5f66df7b323f1",//控制器活动,返回一个分部视图,并且给分部视图传递数据.
+                data: JSON.stringify,  //传递的参数使用JSON.stringify转译为JSON格式
+                type: 'Get',
+                dataType: "jsonp",
+                contentType: 'application/json;charset=utf-8',//数据类型必须有
+                success: function (data) //成功后的回调方法
+                {
+                    console.log(data)
+                    document.getElementById("cinemaname").innerHTML = data.pois[0].name
+                    document.getElementById("adress").innerHTML = data.pois[0].address
+                    document.getElementById("phonenum").innerHTML = data.pois[0].tel
+                    document.getElementById("cinemaimg").src = data.pois[0].photos[0].url
+                    initmap(data.pois[0].entr_location)
+                },
+                error: function (data) {
+                    alert("失败:" + data[0])//弹出框
+                }
+            })
+
+            var s = $("#ul").children()[0].innerText
+            Detail(s)
+        }
+        function Detail(data) {
+            $.ajax({
+                url: "/Index/CinemaDetail/",//控制器活动,返回一个分部视图,并且给分部视图传递数据.
+                data: JSON.stringify
+                    ({
+                        "id": data
+
+                    }),  //传递的参数使用JSON.stringify转译为JSON格式
+                type: 'Post',
+                contentType: 'application/json;charset=utf-8',//数据类型必须有
+                success: function (data) {
+                    $("#change").html(data);
+                },
+                error: function (data) {
+                    console.log(data)
+                }
+                //成功后的回调方法
+            })
+        }
+
+        function initmap(data) {
+            var s = data.split(",")
+           var m1 = new AMap.Marker({
+            position: [s[0],s[1]]
+        });
+        var map = new AMap.Map('container', {
+            resizeEnable: true, //是否监控地图容器尺寸变化
+            zoom: 17, //初始化地图层级
+            center: [s[0], s[1]], //初始化地图中心点
+
+        });
+            map.add(m1)
+        }
+        function jump(mid, Fno) {
+            console.log(mid, Fno)
+            var tel = document.getElementById("phonenum").innerHTML
+            var address = document.getElementById("adress").innerHTML
+            var cinema = document.getElementById("cinemaname")
+            var ci = cinema.innerHTML
+            var a = document.getElementById("go")
+            a.href = "/TicketDetail/Ticket?id=" + mid + "&no=" + Fno + "&cinemas=" + ci + "&address=" + address+"&tel="+tel
+            a.click()
+            //$.ajax({
+            //    url: '/TicketDetail/Ticket',//控制器活动,返回一个分部视图,并且给分部视图传递数据.
+            //    data: JSON.stringify
+            //        ({
+            //            "id": mid,
+            //            "no": Fno,
+            //            "cinemas": ci,
+            //        }),  //传递的参数使用JSON.stringify转译为JSON格式
+            //    type: "post",
+            //    contentType: 'application/json;charset=utf-8',
+            //    success: function (data) {
+            //        console.log("sss")
+            //    },
+            //    error: function (data) {
+            //        console.log(data)
+            //    }//数据类型必须有
+            //})
+
+        }
+        function select() {
+            console.log("Sss")
+            var text = document.getElementById("text").value
+            var a = document.createElement("a")
+            a.href = "/Index/selectmovie?moviename=" + text
+            a.click();
+        }
+    </script>
+
+</body>
+
+</html>
